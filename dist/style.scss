@@ -1,0 +1,28 @@
+//CSS Reset & Globals
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+//Variables
+
+
+body{
+    min-height: 100dvh;
+    min-width: 100dvw;
+
+    input{
+        border: 1px solid #3c5aa6;
+        height: 50px;
+        width: 500px;
+        border-radius: 30px;
+        padding: 10px;
+        font-size: 25px;
+        text-align: center;
+        font-weight: 300;
+    }
+}
