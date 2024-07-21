@@ -46,7 +46,7 @@ export var fetchPokemon = function (query) {
                 case 1:
                     response = _a.sent();
                     if (!!response.ok) return [3 /*break*/, 2];
-                    console.log("There's no pokemon with that name");
+                    console.log("Error: Failed to fetch data for ".concat(query, ". Status: ").concat(response.status, " - ").concat(response.statusText));
                     return [2 /*return*/];
                 case 2: return [4 /*yield*/, response.json()];
                 case 3:
@@ -76,10 +76,57 @@ export var fetchPokemon = function (query) {
         });
     });
 };
-export var fetchEvolutionChain = function () {
+export var fetchPokemonSpecies = function (name) {
     return __awaiter(this, void 0, void 0, function () {
+        var response, data, error_2;
         return __generator(this, function (_a) {
-            return [2 /*return*/];
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 5, , 6]);
+                    return [4 /*yield*/, fetch("https://pokeapi.co/api/v2/pokemon-species/".concat(name))];
+                case 1:
+                    response = _a.sent();
+                    if (!!response.ok) return [3 /*break*/, 2];
+                    console.log("Error: Failed to fetch data for ".concat(name, ". Status: ").concat(response.status, " - ").concat(response.statusText));
+                    return [2 /*return*/];
+                case 2: return [4 /*yield*/, response.json()];
+                case 3:
+                    data = _a.sent();
+                    return [2 /*return*/, data];
+                case 4: return [3 /*break*/, 6];
+                case 5:
+                    error_2 = _a.sent();
+                    console.error("There is no pokemon species under that name, exited with error:", error_2);
+                    return [3 /*break*/, 6];
+                case 6: return [2 /*return*/];
+            }
+        });
+    });
+};
+export var fetchEvolutionChain = function (id) {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, data, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 5, , 6]);
+                    return [4 /*yield*/, fetch("https://pokeapi.co/api/v2/evolution-chain/".concat(id, "/"))];
+                case 1:
+                    response = _a.sent();
+                    if (!!response.ok) return [3 /*break*/, 2];
+                    console.log("Error: Failed to fetch data for ".concat(id, ". Status: ").concat(response.status, " - ").concat(response.statusText));
+                    return [2 /*return*/];
+                case 2: return [4 /*yield*/, response.json()];
+                case 3:
+                    data = _a.sent();
+                    return [2 /*return*/, data];
+                case 4: return [3 /*break*/, 6];
+                case 5:
+                    error_3 = _a.sent();
+                    console.log("Could not fetch evolution data for the requested id");
+                    return [3 /*break*/, 6];
+                case 6: return [2 /*return*/];
+            }
         });
     });
 };
