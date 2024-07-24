@@ -62,6 +62,26 @@ body section[class=app] .pokedex .display-screen .results-screen {
   grid-template-rows: repeat(3, 1fr);
   place-items: center;
 }
+body section[class=app] .pokedex .display-screen .results-screen .loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 15px;
+}
+body section[class=app] .pokedex .display-screen .results-screen .loader div {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid white;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  color: black;
+}
 body section[class=app] .pokedex .display-screen .results-screen .grid-item {
   padding: 10px;
   height: 100%;
@@ -111,8 +131,8 @@ body section[class=app] .pokedex .display-screen .results-screen .basic-info-wra
   gap: 5px;
 }
 body section[class=app] .pokedex .display-screen .results-screen .basic-info-wrapper .basic-info .name img {
-  height: 30px;
-  width: 30px;
+  height: 35px;
+  width: 35px;
 }
 body section[class=app] .pokedex .display-screen .results-screen .basic-info-wrapper .basic-info .name h3 {
   text-transform: capitalize;

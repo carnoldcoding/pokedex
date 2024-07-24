@@ -89,6 +89,22 @@ body{
                     grid-template-rows: repeat(3, 1fr);
                     place-items: center;
 
+                    .loader{
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        display: flex;
+                        gap: 15px;
+                        div{
+                            height: 20px;
+                            width: 20px;
+                            border-radius: 50%;
+                            @include ui-block();
+
+                        }
+                    }
+
                     .grid-item{
                         padding: 10px;
                         height: 100%;
@@ -123,8 +139,8 @@ body{
                                 align-items: center;
                                 gap: 5px;
                                 img{
-                                    height: 30px;
-                                    width: 30px;
+                                    height: 35px;
+                                    width: 35px;
                                 }
                                 h3{
                                     text-transform: capitalize;

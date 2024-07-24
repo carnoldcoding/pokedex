@@ -31,7 +31,7 @@ export const createCard = function(pokemon : Pokemon){
         <div class="grid-item basic-info-wrapper">
             <div class="basic-info">
                 <div class="name">
-                    <img src="https://cdn.pixabay.com/photo/2016/08/15/00/50/pokeball-1594373_1280.png">
+                    <img src="src/assets/pokeball.png">
                     <h3>${pokemon.name}</h3>
                 </div>
                 <div class="types">
@@ -44,24 +44,24 @@ export const createCard = function(pokemon : Pokemon){
         
     `;
 }
-/*
 
-        <div class="info">
-            <h1>${pokemon.name}</h1>
-            <div class="abilities">
-                <h3>Abilities</h3>
-                ${pokemon.abilities.map(ability => `<p>${ability.name}</p>`).join('')} 
-            </div>
-            <div class="moves">
-                <h3>Moves</h3>
-                ${pokemon.moves.map(move => `<p>${move.name}</p>`).join('')} 
-            </div>
-            <div class="types">
-                <h3>Types</h3>
-                ${pokemon.types.map(type => `<p>${type.name}</p>`).join('')} 
-            </div>
-        </div>
-*/
+const loaderAnimation = function(){
+    const tl = gsap.timeline({ repeat: -1 });
+    const circles = document.querySelectorAll(".loader > div");
+
+    circles.forEach((circle, index) => {
+    tl.to(circle, {
+        y: -25,
+        ease: "power1.inOut",
+        duration: 0.4,
+    }, index * 0.2)
+    .to(circle, {
+        y: 0,
+        ease: "power1.outIn",
+        duration: 0.4,
+    },`-=0.12`);
+    });
+}
 
 export const search = async function (e : KeyboardEvent) {
     const resultsDOM = document.querySelector(".results-screen") as HTMLElement;
@@ -69,13 +69,22 @@ export const search = async function (e : KeyboardEvent) {
     if(e.code === "Enter"){
         inputElement.blur();
         if(resultsDOM){
-            resultsDOM.innerHTML = `<div class="loader">Loading...</div>`;
+            resultsDOM.innerHTML = `
+            <div class="loader">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>`;
+            loaderAnimation();
             const result = await fetchPokemon(inputElement.value.toLowerCase());
-            if (result){
-                resultsDOM.innerHTML = createCard(result);
-            }else{
-                resultsDOM.innerHTML = "There is no pokemon with that name.";
-            }
+            setTimeout(()=>{
+                if (result){
+                    resultsDOM.innerHTML = createCard(result);
+                }else{
+                    resultsDOM.innerHTML = "There is no pokemon with that name.";
+                }
+            }, 1500)
+            
         }
     }
 }
