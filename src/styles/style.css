@@ -30,7 +30,7 @@ body section[class=app] {
 }
 body section[class=app] .pokedex {
   height: clamp(650px, 95dvw, 750px);
-  min-width: clamp(320px, 95dvw, 450px);
+  width: clamp(320px, 95dvw, 450px);
   position: relative;
   border-radius: 20px;
   display: flex;
@@ -47,8 +47,27 @@ body section[class=app] .pokedex .display-screen {
   border-radius: 5px;
   position: relative;
   padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  place-items: center;
 }
-body section[class=app] .pokedex .display-screen .pokemon .sprite {
+body section[class=app] .pokedex .display-screen .results-screen {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-column: 1/5;
+  grid-row: 1/4;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  place-items: center;
+}
+body section[class=app] .pokedex .display-screen .results-screen .grid-item {
+  padding: 10px;
+  height: 100%;
+  width: 100%;
+}
+body section[class=app] .pokedex .display-screen .results-screen .sprite {
   background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -56,13 +75,38 @@ body section[class=app] .pokedex .display-screen .pokemon .sprite {
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05);
   border-radius: 10px;
   color: black;
-  height: 100px;
-  width: 100px;
+  height: 100%;
+  width: 100%;
+  display: flex;
 }
-body section[class=app] .pokedex .display-screen .pokemon .sprite img {
+body section[class=app] .pokedex .display-screen .results-screen .sprite img {
   height: 100%;
   width: 100%;
   object-fit: cover;
+}
+body section[class=app] .pokedex .display-screen .results-screen .basic-info-wrapper {
+  grid-column: span 2;
+}
+body section[class=app] .pokedex .display-screen .results-screen .basic-info-wrapper .basic-info {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid white;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  color: black;
+  height: 100%;
+  width: 100%;
+  grid-column: span 2;
+}
+body section[class=app] .pokedex .display-screen .search-wrapper {
+  grid-row: 4/5;
+  grid-column: span 3;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 body section[class=app] .pokedex .display-screen .search {
   background: rgba(255, 255, 255, 0.4);
@@ -72,15 +116,11 @@ body section[class=app] .pokedex .display-screen .search {
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05);
   border-radius: 10px;
   color: black;
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
+  position: realtive;
   height: 70px;
   width: 70px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.2s ease;
+  display: grid;
+  place-items: center;
 }
 body section[class=app] .pokedex .display-screen .search:hover {
   cursor: pointer;

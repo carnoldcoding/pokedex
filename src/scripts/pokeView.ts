@@ -4,10 +4,23 @@ import { gsap } from "gsap";
 
 export const createCard = function(pokemon : Pokemon){
     return `
-        <div class="sprite">
-            <img src="${pokemon.sprite}">
+        <div class="grid-item">
+            <div class="sprite">
+                <img src="${pokemon.sprite}">
+            </div>
         </div>
+        <div class="grid-item basic-info-wrapper">
+            <div class="basic-info">
+                <p>fuk</p>
+            </div>
+        </div>
+
         
+        
+    `;
+}
+/*
+
         <div class="info">
             <h1>${pokemon.name}</h1>
             <div class="abilities">
@@ -23,11 +36,10 @@ export const createCard = function(pokemon : Pokemon){
                 ${pokemon.types.map(type => `<p>${type.name}</p>`).join('')} 
             </div>
         </div>
-    `;
-}
+*/
 
 export const search = async function (e : KeyboardEvent) {
-    const resultsDOM = document.querySelector(".pokemon") as HTMLElement;
+    const resultsDOM = document.querySelector(".results-screen") as HTMLElement;
     const inputElement = e.target as HTMLInputElement;
     if(e.code === "Enter"){
         inputElement.blur();
@@ -59,7 +71,7 @@ searchIconDOM?.addEventListener("click", ()=>{
         opacity: 0,
         display: "none"
     }).to(".search",{
-        width: "90%",
+        width: "100%",
         duration: defaultDuration,
         ease: defaultEase
     }).to("input",{

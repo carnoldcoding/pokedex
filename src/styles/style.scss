@@ -56,7 +56,7 @@ body{
 
         .pokedex{
             height: clamp(650px, 95dvw, 750px);
-            min-width: clamp(320px, 95dvw, 450px);
+            width: clamp(320px, 95dvw, 450px);
             position: relative;
             border-radius: $pokedex-radius;
             display: flex;
@@ -74,30 +74,63 @@ body{
                 position: relative;
                 padding: 20px;
 
-                .pokemon{
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(4, 1fr);
+                place-items: center;
+
+                .results-screen{
+                    height: 100%;
+                    width: 100%;
+                    display: grid;
+                    grid-column: 1 / 5;
+                    grid-row: 1 / 4;
+                    grid-template-columns: repeat(3, 1fr);
+                    grid-template-rows: repeat(3, 1fr);
+                    place-items: center;
+
+                    .grid-item{
+                        padding: 10px;
+                        height: 100%;
+                        width: 100%;
+                    }
                     .sprite{
                         @include ui-block();
-                        height: 100px;
-                        width: 100px;
+                        height: 100%;
+                        width: 100%;
+                        display: flex;
                         img{
                             height: 100%;
                             width: 100%;
                             object-fit: cover;
                         }
                     }
+                    .basic-info-wrapper{
+                        grid-column: span 2;
+                        .basic-info{
+                            @include ui-block();
+                            height: 100%;
+                            width: 100%;
+                            grid-column: span 2;
+                        }
+                    }
                 }
-
+                .search-wrapper{
+                    grid-row: 4 / 5;
+                    grid-column: span 3;  
+                    height: 100%;
+                    width: 100%;
+                    display: flex;
+                    align-items: flex-end;
+                    justify-content: flex-end; 
+                }
                 .search{
                     @include ui-block();
-                    position: absolute;
-                    bottom: 20px;
-                    right: 20px;
+                    position: realtive;
                     height: 70px;
                     width: 70px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    transition: all .2s ease;
+                    display: grid;
+                    place-items: center;
                     &:hover{
                         cursor: pointer;
                     }
