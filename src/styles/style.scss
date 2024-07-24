@@ -138,6 +138,46 @@ body{
                     .info-slide-wrapper{
                         grid-column: span 3;
                         grid-row: span 2;
+                        .glide{
+                            width: 100%;
+                            height:100%;
+                            .glide__track{
+                                width: 100%;
+                                height:100%;
+                                .glide__slides{
+                                    width: 100%;
+                                    height:100%;
+                                    .glide__slide{
+                                        width: 100%;
+                                        height:100%;
+                                    }
+                                }
+                            }
+                        }
+                        .glide__arrows{
+                            width: 100%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            margin-top: clamp(5px, 1vw, 15px);
+                            gap: 20px;
+                            button{
+                                @include ui-block();
+                                padding: 5px;
+                                &.left{
+                                    ion-icon{
+                                        transform: rotate(180deg);
+                                    }
+                                }
+                                ion-icon{
+                                    display: inline-block !important;
+                                    opacity: 1 !important;
+                                    color: white;
+                                    font-size: 25px;
+                                }
+                            }
+
+                        }
                         .info-slide{
                             height: 100%;
                             width: 100%;
@@ -153,6 +193,9 @@ body{
                                 display: flex; 
                                 flex-direction: column;
                                 gap: 10px;
+                                p{
+                                    font-size: clamp(10px, 3dvw, 15px);
+                                }
                                 header{
                                     display: flex;
                                     align-items: center;

@@ -1,6 +1,7 @@
 import { Pokemon } from "./pokeModel.js";
 import { fetchPokemon } from "./pokeAPI.js";
 import { loaderAnimation, searchbarAnimation } from "./gsapAnimations.js";
+import Glide from '@glidejs/glide'
 
 export const createCard = function(pokemon : Pokemon){
     const typeColorMap : Record<string, string> = {
@@ -40,23 +41,37 @@ export const createCard = function(pokemon : Pokemon){
             </div>
         </div>
         <div class="grid-item info-slide-wrapper">
-            <div class="info-slide">
-                <article>
-                    <header>
-                        <h3>moves</h3>
-                    </header>
-                    <div class="moves">
-                        ${pokemon.moves.map(move => `<p style="background:${typeColorMap[move.name]}">${move.name}</p>`).join('')}
-                    </div>
-                </article>
-                <article class="abilities">
-                    <header>
-                      <h3>Abilities</h3>
-                    </header>
-                    <div class="moves">
-                        ${pokemon.abilities.map(ability => `<p style="background:${typeColorMap[ability.name]}">${ability.name}</p>`).join('')}
-                    </div>
-                </article>
+            <div class="glide">
+                <div class="glide__track" data-glide-el="track">
+                    <ul class="glide__slides">
+                        <li class="glide__slide">
+                            <div class="info-slide">
+                                <article>
+                                    <header>
+                                        <h3>moves</h3>
+                                    </header>
+                                    <div class="moves">
+                                        ${pokemon.moves.map(move => `<p style="background:${typeColorMap[move.name]}">${move.name}</p>`).join('')}
+                                    </div>
+                                </article>
+                                <article class="abilities">
+                                    <header>
+                                    <h3>Abilities</h3>
+                                    </header>
+                                    <div class="moves">
+                                        ${pokemon.abilities.map(ability => `<p style="background:${typeColorMap[ability.name]}">${ability.name}</p>`).join('')}
+                                    </div>
+                                </article>
+                            </div>
+                        </li>
+                        <li class="glide__slide">1</li>
+                        <li class="glide__slide">2</li>
+                    </ul>
+                </div>
+                 <div class="glide__arrows" data-glide-el="controls">
+                    <button class="left" data-glide-dir="<"><ion-icon name="play-outline"></ion-icon></button>
+                    <button class="" data-glide-dir=">"><ion-icon name="play-outline"></ion-icon></button>
+                </div>
             </div>
         </div>
 
@@ -82,6 +97,7 @@ export const search = async function (e : KeyboardEvent) {
             setTimeout(()=>{
                 if (result){
                     resultsDOM.innerHTML = createCard(result);
+                    new Glide('div.glide').mount()
                 }else{
                     resultsDOM.innerHTML = `
                     <div class="not-found-animation">
