@@ -1,10 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+@font-face {
+  font-family: "PokemonGB";
+  src: url("fonts/PKMN RBYGSC.ttf") format("truetype");
+}
 * {
   margin: 0;
   padding: 0;
   border: 0;
   outline: 0;
   box-sizing: border-box;
-  font-family: "Inter", sans-serif;
+  font-family: "PokemonGB";
 }
 
 body {
@@ -41,14 +46,35 @@ body section[class=app] .pokedex .display-screen {
   border: 1px solid #c6ebff;
   border-radius: 5px;
   position: relative;
+  padding: 20px;
+}
+body section[class=app] .pokedex .display-screen .pokemon .sprite {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid white;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  color: black;
+  height: 100px;
+  width: 100px;
+}
+body section[class=app] .pokedex .display-screen .pokemon .sprite img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 body section[class=app] .pokedex .display-screen .search {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid white;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  color: black;
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  border: 2px solid white;
-  border-radius: 50%;
+  bottom: 20px;
+  right: 20px;
   height: 70px;
   width: 70px;
   display: flex;
@@ -61,6 +87,14 @@ body section[class=app] .pokedex .display-screen .search:hover {
 }
 body section[class=app] .pokedex .display-screen .search input {
   display: none;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  background: transparent;
+  caret-color: white;
+  padding: 10px;
+  text-align: center;
+  font-size: 24px;
 }
 body section[class=app] .pokedex .display-screen .search ion-icon {
   font-size: 40px;

@@ -1,4 +1,6 @@
 import { fetchPokemon, fetchEvolutionChain, fetchPokemonSpecies } from "./scripts/pokeAPI.js";
+import "./scripts/pokeView.js";
+
 console.log("Pokemon App Initialized");
 
 (async ()=>{
