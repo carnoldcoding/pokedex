@@ -39,6 +39,26 @@ export const createCard = function(pokemon : Pokemon){
                 </div>
             </div>
         </div>
+        <div class="grid-item info-slide-wrapper">
+            <div class="info-slide">
+                <article>
+                    <header>
+                        <h3>moves</h3>
+                    </header>
+                    <div class="moves">
+                        ${pokemon.moves.map(move => `<p style="background:${typeColorMap[move.name]}">${move.name}</p>`).join('')}
+                    </div>
+                </article>
+                <article class="abilities">
+                    <header>
+                      <h3>Abilities</h3>
+                    </header>
+                    <div class="moves">
+                        ${pokemon.abilities.map(ability => `<p style="background:${typeColorMap[ability.name]}">${ability.name}</p>`).join('')}
+                    </div>
+                </article>
+            </div>
+        </div>
 
         
         
