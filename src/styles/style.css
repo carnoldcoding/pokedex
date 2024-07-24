@@ -1,0 +1,71 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  height: 100dvh;
+  width: 100dvw;
+}
+body section[class=app] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-image: url("https://i.pinimg.com/originals/b1/6d/90/b16d909fa4fbf4f57c549e8a956ae81c.jpg");
+  padding: 5px;
+}
+body section[class=app] .pokedex {
+  height: clamp(650px, 95dvw, 750px);
+  min-width: clamp(320px, 95dvw, 450px);
+  position: relative;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body section[class=app] .pokedex .display-screen {
+  height: 80%;
+  width: 100%;
+  background: rgba(82, 174, 223, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid #c6ebff;
+  border-radius: 5px;
+  position: relative;
+}
+body section[class=app] .pokedex .display-screen .search {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid white;
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+body section[class=app] .pokedex .display-screen .search:hover {
+  cursor: pointer;
+}
+body section[class=app] .pokedex .display-screen .search input {
+  display: none;
+}
+body section[class=app] .pokedex .display-screen .search ion-icon {
+  font-size: 40px;
+  color: white;
+  transition: all 0.2s ease;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -34,41 +34,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { fetchPokemon } from "./pokeAPI.js";
-import { gsap } from "gsap";
-export var createCard = function (pokemon) {
-    return "\n        <article class=\"card\">\n            <img class=\"sprite\" src=\"".concat(pokemon.sprite, "\">\n            <div class=\"info\">\n                <h1>").concat(pokemon.name, "</h1>\n                <div class=\"abilities\">\n                    <h3>Abilities</h3>\n                    ").concat(pokemon.abilities.map(function (ability) { return "<p>".concat(ability.name, "</p>"); }).join(''), " \n                </div>\n                <div class=\"moves\">\n                    <h3>Moves</h3>\n                    ").concat(pokemon.moves.map(function (move) { return "<p>".concat(move.name, "</p>"); }).join(''), " \n                </div>\n            </div>\n        </article>\n    ");
-};
-export var search = function (e) {
-    return __awaiter(this, void 0, void 0, function () {
-        var resultsDOM, inputElement, result;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    resultsDOM = document.querySelector(".results");
-                    inputElement = e.target;
-                    if (!(e.code === "Enter")) return [3 /*break*/, 2];
-                    if (!resultsDOM) return [3 /*break*/, 2];
-                    resultsDOM.innerHTML = "<div class=\"loader\">Loading...</div>";
-                    return [4 /*yield*/, fetchPokemon(inputElement.value.toLowerCase())];
-                case 1:
-                    result = _a.sent();
-                    if (result) {
-                        resultsDOM.innerHTML = createCard(result);
-                    }
-                    else {
-                        resultsDOM.innerHTML = "There is no pokemon with that name.";
-                    }
-                    _a.label = 2;
-                case 2: return [2 /*return*/];
-            }
-        });
+import { fetchPokemon, fetchPokemonSpecies } from "./scripts/pokeAPI.js";
+console.log("Pokemon App Initialized");
+(function () { return __awaiter(void 0, void 0, void 0, function () {
+    var data, speciesData;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, fetchPokemon("arcanine")];
+            case 1:
+                data = _a.sent();
+                if (!data) return [3 /*break*/, 3];
+                console.log(data.name);
+                return [4 /*yield*/, fetchPokemonSpecies(data.name)];
+            case 2:
+                speciesData = _a.sent();
+                console.log(speciesData);
+                _a.label = 3;
+            case 3: return [2 /*return*/];
+        }
     });
-};
-//Attach Event Listeners
-var searchIconDOM = document.querySelector('.search');
-var searchbarDOM = document.querySelector("input");
-searchbarDOM === null || searchbarDOM === void 0 ? void 0 : searchbarDOM.addEventListener("keydown", search);
-searchIconDOM === null || searchIconDOM === void 0 ? void 0 : searchIconDOM.addEventListener("click", function () {
-    var tl = gsap.timeline();
-});
+}); })();

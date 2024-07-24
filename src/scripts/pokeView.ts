@@ -1,5 +1,6 @@
 import { Pokemon } from "./pokeModel.js";
 import { fetchPokemon } from "./pokeAPI.js";
+import { gsap } from "gsap";
 
 export const createCard = function(pokemon : Pokemon){
     return `
@@ -37,5 +38,9 @@ export const search = async function (e : KeyboardEvent) {
 }
 
 //Attach Event Listeners
+const searchIconDOM = document.querySelector('.search');
 const searchbarDOM = document.querySelector("input");
 searchbarDOM?.addEventListener("keydown", search);
+searchIconDOM?.addEventListener("click", ()=>{
+    let tl = gsap.timeline();
+})
