@@ -18,6 +18,10 @@ export const createCard = function(pokemon : Pokemon){
                 <h3>Moves</h3>
                 ${pokemon.moves.map(move => `<p>${move.name}</p>`).join('')} 
             </div>
+            <div class="types">
+                <h3>Types</h3>
+                ${pokemon.types.map(type => `<p>${type.name}</p>`).join('')} 
+            </div>
         </div>
     `;
 }

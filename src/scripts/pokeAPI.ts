@@ -1,4 +1,4 @@
-import { Pokemon, IAbility, IForm, IMove } from "./pokeModel.js";
+import { Pokemon, IAbility, IForm, IMove, IType } from "./pokeModel.js";
 
 export const fetchPokemon = async function(query : string){
     try {
@@ -9,10 +9,11 @@ export const fetchPokemon = async function(query : string){
 
         }else{
             const data = await response.json();
-            const {name, abilities, forms, moves, sprites, id } = data;
+            const {name, abilities, forms, moves, types, sprites, id } = data;
             const pAbilities : IAbility[] = [];
             const pForms : IForm[] = [];
             const pMoves : IMove[] = [];
+            const pTypes : IType[] = [];
             const sprite : string = sprites.front_default;
             
             abilities.forEach((entity: {ability: IAbility}) => {
@@ -27,7 +28,11 @@ export const fetchPokemon = async function(query : string){
                 pMoves.push(entity.move);
             })
 
-            return (new Pokemon({id: id, name : name, abilities: pAbilities, forms: pForms, moves: pMoves, sprite : sprite }))
+            types.forEach((entity: {type : IType})=>{
+                pTypes.push(entity.type);
+            })
+
+            return (new Pokemon({id: id, name : name, abilities: pAbilities, forms: pForms, moves: pMoves, types: pTypes, sprite : sprite }))
         }
     } catch (error) {
         console.error("Unable to fetch pokemon, exited with error: ", error)
