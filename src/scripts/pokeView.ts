@@ -3,6 +3,25 @@ import { fetchPokemon } from "./pokeAPI.js";
 import { gsap } from "gsap";
 
 export const createCard = function(pokemon : Pokemon){
+    const typeColorMap : Record<string, string> = {
+        "grass": '#78C850', 
+        "fire": '#F08030',  
+        "water": '#6890F0',  
+        "bug": '#A8B820',  
+        "normal": '#A8A878',  
+        "poison": '#A040A0',  
+        "electric": '#F8D030', 
+        "ground": '#E0C068', 
+        "fairy": '#EE99AC',  
+        "fighting": '#C03028',  
+        "psychic": '#F85888', 
+        "rock": '#B8A038',  
+        "ghost": '#705898',  
+        "ice": '#98D8D8',  
+        "dragon": '#7038F8',
+        "steel": '#6E7889',
+        "flying": '#A98FF3',
+    }
     return `
         <div class="grid-item">
             <div class="sprite">
@@ -11,7 +30,13 @@ export const createCard = function(pokemon : Pokemon){
         </div>
         <div class="grid-item basic-info-wrapper">
             <div class="basic-info">
-                <p>fuk</p>
+                <div class="name">
+                    <img src="https://cdn.pixabay.com/photo/2016/08/15/00/50/pokeball-1594373_1280.png">
+                    <h3>${pokemon.name}</h3>
+                </div>
+                <div class="types">
+                    ${pokemon.types.map(type => `<p style="background:${typeColorMap[type.name]}">${type.name}</p>`).join('')}
+                </div>
             </div>
         </div>
 
