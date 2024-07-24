@@ -8,3 +8,4 @@ This app provides a niche way to visualize pokemon data from the PokeAPI service
 * HTML/SCSS/TypeScript
 * Node.Js
 * PokeAPI
+* Vite (Bundler)
