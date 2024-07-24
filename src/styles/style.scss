@@ -89,6 +89,20 @@ body{
                     grid-template-rows: repeat(3, 1fr);
                     place-items: center;
 
+                    .not-found-animation{
+                        grid-column: span 3;
+                        img{
+                            height: 100%;
+                            width: 100%;
+                            object-fit: contain;
+                        }
+                    }
+                    .not-found-message{
+                        grid-row: 2 / 3;
+                        grid-column: span 3;
+                        text-align: center;
+                        line-height: 35px;
+                    }
                     .loader{
                         position: absolute;
                         top: 50%;

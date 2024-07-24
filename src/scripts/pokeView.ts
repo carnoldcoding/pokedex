@@ -1,6 +1,6 @@
 import { Pokemon } from "./pokeModel.js";
 import { fetchPokemon } from "./pokeAPI.js";
-import { gsap } from "gsap";
+import { loaderAnimation, searchbarAnimation } from "./gsapAnimations.js";
 
 export const createCard = function(pokemon : Pokemon){
     const typeColorMap : Record<string, string> = {
@@ -45,24 +45,6 @@ export const createCard = function(pokemon : Pokemon){
     `;
 }
 
-const loaderAnimation = function(){
-    const tl = gsap.timeline({ repeat: -1 });
-    const circles = document.querySelectorAll(".loader > div");
-
-    circles.forEach((circle, index) => {
-    tl.to(circle, {
-        y: -25,
-        ease: "power1.inOut",
-        duration: 0.4,
-    }, index * 0.2)
-    .to(circle, {
-        y: 0,
-        ease: "power1.outIn",
-        duration: 0.4,
-    },`-=0.12`);
-    });
-}
-
 export const search = async function (e : KeyboardEvent) {
     const resultsDOM = document.querySelector(".results-screen") as HTMLElement;
     const inputElement = e.target as HTMLInputElement;
@@ -81,7 +63,14 @@ export const search = async function (e : KeyboardEvent) {
                 if (result){
                     resultsDOM.innerHTML = createCard(result);
                 }else{
-                    resultsDOM.innerHTML = "There is no pokemon with that name.";
+                    resultsDOM.innerHTML = `
+                    <div class="not-found-animation">
+                        <img src="/src/assets/psyduck_animation.gif">
+                    </div>
+                    <div class="not-found-message">
+                        <h2>Oops! Sorry, we can't find that pokemon. </h2>
+                    </div>
+                    `;
                 }
             }, 1500)
             
@@ -95,25 +84,6 @@ const searchbarDOM = document.querySelector("input");
 
 searchbarDOM?.addEventListener("keydown", search);
 searchIconDOM?.addEventListener("click", ()=>{
-    let tl = gsap.timeline({});
-    const defaultDuration = .2;
-    const defaultEase = "power3.inOut";
-
-    tl.to("ion-icon",{
-        duration: defaultDuration,
-        ease: defaultEase,
-        opacity: 0,
-        display: "none"
-    }).to(".search",{
-        width: "100%",
-        duration: defaultDuration,
-        ease: defaultEase
-    }).to("input",{
-        ease: defaultEase,
-        duration: defaultDuration,
-        display: "inline-block"
-    })
-    setTimeout(()=>{
-        searchbarDOM?.focus();
-    }, 600)
-})
+    searchbarAnimation();
+    setTimeout(()=>{searchbarDOM?.focus();}, 500);
+});
