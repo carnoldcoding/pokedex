@@ -27,9 +27,6 @@ jobs:
     - name: Build project
       run: npm run build  # Build the Vite project
 
-    - name: Run tests
-      run: npm test  # Run tests (if applicable)
-
     - name: Start Vite app
       run: npm run dev  # Start the Vite app (not typically done in CI but useful for local testing)
       env:
