@@ -3,6 +3,9 @@ import { fetchPokemon } from "./pokeAPI.js";
 import { loaderAnimation, searchbarAnimation } from "./gsapAnimations.js";
 import Glide from '@glidejs/glide'
 
+import pokeball from "../assets/pokeball.png"
+import psyduck from "../assets/psyduck_animation.gif"
+
 export const createCard = function(pokemon : Pokemon){
     const typeColorMap : Record<string, string> = {
         "grass": '#78C850', 
@@ -32,7 +35,7 @@ export const createCard = function(pokemon : Pokemon){
         <div class="grid-item basic-info-wrapper">
             <div class="basic-info">
                 <div class="name">
-                    <img src="src/assets/pokeball.png">
+                    <img src="${pokeball}">
                     <h3>${pokemon.name}</h3>
                 </div>
                 <div class="types">
@@ -111,7 +114,7 @@ export const search = async function (e : KeyboardEvent) {
                 }else{
                     resultsDOM.innerHTML = `
                     <div class="not-found-animation">
-                        <img src="src/assets/psyduck_animation.gif">
+                        <img src="${psyduck}">
                     </div>
                     <div class="not-found-message">
                         <h2>Oops! Sorry, we can't find that pokemon. </h2>
