@@ -39,6 +39,9 @@ $pokedex-radius: 20px;
 
 
 body{
+    h3{
+        font-size: clamp(12px, 2vw, 25px);
+    }
     height: 100dvh;
     width: 100dvw;
 
@@ -164,6 +167,9 @@ body{
                             button{
                                 @include ui-block();
                                 padding: 5px;
+                                &:hover{
+                                    cursor: pointer;
+                                }
                                 &.left{
                                     ion-icon{
                                         transform: rotate(180deg);
@@ -183,10 +189,30 @@ body{
                             width: 100%;
                             display: flex;
                             gap: 20px;
+                            .second-slide{
+                                height: 100%;
+                                width: 100%;
+                                @include ui-block();
+                                padding: 10px;
+                                display: flex;
+                                flex-direction: column;
+                                gap: 10px;
+                                header{
+                                    h3{
+                                        span{
+                                            text-transform: uppercase;
+                                        }
+                                    }
+                                }
+                                .description{
+                                    p{
+                                        line-height: 1.75;
+                                    }
+                                }
+                            }
                             article{
                                 height: 100%;
                                 width: 50%;
-                                background: pink;
                                 @include ui-block();
                                 padding: 10px;
 
@@ -194,7 +220,7 @@ body{
                                 flex-direction: column;
                                 gap: 10px;
                                 p{
-                                    font-size: clamp(10px, 3dvw, 15px);
+                                    font-size: clamp(10px, 2dvw, 15px);
                                 }
                                 header{
                                     display: flex;
@@ -207,7 +233,7 @@ body{
                                     h3{
                                         text-transform: uppercase;
                                         text-align: center;
-                                        font-size: 15px;
+                                        font-size: clamp(13px, 2vw, 15px);
                                     }
                                 }
                                 .moves{

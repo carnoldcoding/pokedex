@@ -44,6 +44,18 @@ export const createCard = function(pokemon : Pokemon){
             <div class="glide">
                 <div class="glide__track" data-glide-el="track">
                     <ul class="glide__slides">
+                    <li class="glide__slide">
+                            <div class="info-slide">
+                                <div class="second-slide">
+                                    <header>
+                                        <h3>Gen <span>${pokemon.generation}</span></h3>
+                                    </header>
+                                    <div class="description">
+                                        <p>${pokemon.flavorText}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
                         <li class="glide__slide">
                             <div class="info-slide">
                                 <article>
@@ -64,8 +76,6 @@ export const createCard = function(pokemon : Pokemon){
                                 </article>
                             </div>
                         </li>
-                        <li class="glide__slide">1</li>
-                        <li class="glide__slide">2</li>
                     </ul>
                 </div>
                  <div class="glide__arrows" data-glide-el="controls">

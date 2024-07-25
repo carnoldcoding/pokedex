@@ -2,6 +2,33 @@ import { Pokemon, IAbility, IForm, IMove, IType } from "./pokeModel.js";
 
 export const fetchPokemon = async function(query : string){
     try {
+        const pokemon = await fetchPokemonBasic(query);
+
+        if(pokemon){
+            try {
+                const pokemonSpecies = await fetchPokemonSpecies(pokemon.species);
+                console.log(pokemonSpecies);
+                const {generation, flavor_text_entries} = pokemonSpecies;
+
+                const parsedGeneration = generation.name.split('-')[1];
+                pokemon.generation = parsedGeneration;
+
+                const parsedFlavorText = flavor_text_entries[0].flavor_text;
+                pokemon.flavorText = parsedFlavorText;
+            } catch (error) {
+                console.log("Unable to fetch pokemon species", error);
+            }
+
+            return pokemon;
+        }
+    } catch (error) {
+        console.log("Couldn't fetch the pokemon", error);
+    }
+    
+}
+
+export const fetchPokemonBasic = async function(query : string){
+    try {
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${query}`);
         if(!response.ok){
             console.log(`Error: Failed to fetch data for ${query}. Status: ${response.status} - ${response.statusText}`);
@@ -9,12 +36,15 @@ export const fetchPokemon = async function(query : string){
 
         }else{
             const data = await response.json();
-            const {name, abilities, forms, moves, types, sprites, id } = data;
+            const {name, abilities, forms, moves, types, sprites, id, species } = data;
             const pAbilities : IAbility[] = [];
             const pForms : IForm[] = [];
             const pMoves : IMove[] = [];
             const pTypes : IType[] = [];
             const sprite : string = sprites.front_default;
+
+            const speciesURL : string = species.url.split('/');
+            const speciesId : string = speciesURL[speciesURL.length - 2];
             
             abilities.forEach((entity: {ability: IAbility}) => {
                 pAbilities.push(entity.ability);
@@ -32,7 +62,7 @@ export const fetchPokemon = async function(query : string){
                 pTypes.push(entity.type);
             })
 
-            return (new Pokemon({id: id, name : name, abilities: pAbilities, forms: pForms, moves: pMoves, types: pTypes, sprite : sprite }))
+            return (new Pokemon({id: id, name : name, abilities: pAbilities, forms: pForms, moves: pMoves, types: pTypes, sprite : sprite, species : speciesId }))
         }
     } catch (error) {
         console.error("Unable to fetch pokemon, exited with error: ", error)
@@ -54,11 +84,11 @@ export const fetchPokemonSpecies = async function(name : string){
     }
 }
 
-export const fetchEvolutionChain = async function(id : number){
+export const fetchEvolutionChain = async function(url : string){
     try {
-        const response = await fetch(`https://pokeapi.co/api/v2/evolution-chain/${id}/`);
+        const response = await fetch(url);
         if(!response.ok){
-            console.log(`Error: Failed to fetch data for ${id}. Status: ${response.status} - ${response.statusText}`);
+            console.log(`Error: Failed to fetch data for endpoint: ${url}. Status: ${response.status} - ${response.statusText}`);
             return
         }else{
             const data = await response.json();

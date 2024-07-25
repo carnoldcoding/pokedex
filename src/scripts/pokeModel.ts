@@ -25,7 +25,10 @@ export interface IPokemon {
     forms: IForm[],
     moves: IMove[],
     types: IType[],
-    sprite: string
+    sprite: string,
+    species: string,
+    generation?: string,
+    flavorText?:string
 }
 
 export class Pokemon implements IPokemon{
@@ -36,6 +39,10 @@ export class Pokemon implements IPokemon{
     moves: IMove[];
     types: IType[];
     sprite: string;
+    species: string;
+    generation?:string;
+    flavorText?:string;
+    
 
     constructor(pokemon : Pokemon){
         this.name = pokemon.name;
@@ -45,5 +52,6 @@ export class Pokemon implements IPokemon{
         this.moves = pokemon.moves;
         this.types = pokemon.types;
         this.sprite = pokemon.sprite;
+        this.species = pokemon.species;
     }
 }

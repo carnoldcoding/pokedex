@@ -16,6 +16,9 @@ body {
   height: 100dvh;
   width: 100dvw;
 }
+body h3 {
+  font-size: clamp(12px, 2vw, 25px);
+}
 body section[class=app] {
   display: flex;
   justify-content: center;
@@ -156,6 +159,9 @@ body section[class=app] .pokedex .display-screen .results-screen .info-slide-wra
   color: black;
   padding: 5px;
 }
+body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .glide__arrows button:hover {
+  cursor: pointer;
+}
 body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .glide__arrows button.left ion-icon {
   transform: rotate(180deg);
 }
@@ -171,10 +177,30 @@ body section[class=app] .pokedex .display-screen .results-screen .info-slide-wra
   display: flex;
   gap: 20px;
 }
+body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide .second-slide {
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid white;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  color: black;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide .second-slide header h3 span {
+  text-transform: uppercase;
+}
+body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide .second-slide .description p {
+  line-height: 1.75;
+}
 body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article {
   height: 100%;
   width: 50%;
-  background: pink;
   background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -188,7 +214,7 @@ body section[class=app] .pokedex .display-screen .results-screen .info-slide-wra
   gap: 10px;
 }
 body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article p {
-  font-size: clamp(10px, 3dvw, 15px);
+  font-size: clamp(10px, 2dvw, 15px);
 }
 body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article header {
   display: flex;
@@ -202,7 +228,7 @@ body section[class=app] .pokedex .display-screen .results-screen .info-slide-wra
 body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article header h3 {
   text-transform: uppercase;
   text-align: center;
-  font-size: 15px;
+  font-size: clamp(13px, 2vw, 15px);
 }
 body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .moves {
   overflow-y: scroll;
