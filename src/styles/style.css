@@ -276,7 +276,7 @@ body section[class=app] .pokedex .display-screen .results-screen .basic-info-wra
 }
 body section[class=app] .pokedex .display-screen .results-screen .basic-info-wrapper .basic-info .types p {
   text-transform: uppercase;
-  font-size: 13px;
+  font-size: clamp(9px, 1vw, 13px);
   border-radius: 5px;
   padding: 10px;
 }
@@ -316,7 +316,7 @@ body section[class=app] .pokedex .display-screen .search input {
   caret-color: white;
   padding: 10px;
   text-align: center;
-  font-size: 24px;
+  font-size: clamp(15px, 3vw, 24px);
 }
 body section[class=app] .pokedex .display-screen .search ion-icon {
   font-size: 40px;
