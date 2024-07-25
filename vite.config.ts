@@ -13,8 +13,7 @@ export default defineConfig({
         }
       }
     },
-    base: '/pokedex-app/',
-
+    base: '/pokedex/',
     build: {
       rollupOptions: {
         input: './src/app.ts'
