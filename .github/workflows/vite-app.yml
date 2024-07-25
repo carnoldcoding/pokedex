@@ -3,31 +3,32 @@ name: Vite App CI
 on:
   push:
     branches:
-      - main  # Trigger the workflow on push to the main branch
+      - main
   pull_request:
     branches:
-      - main  # Trigger the workflow on pull requests targeting the main branch
+      - main
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Use the latest Ubuntu runner
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3  # Checkout the code from the repository
+      uses: actions/checkout@v3
 
     - name: Set up Node.js
-      uses: actions/setup-node@v3  # Set up Node.js environment
+      uses: actions/setup-node@v3
       with:
-        node-version: '16'  # Specify the Node.js version
+        node-version: '16'
 
     - name: Install dependencies
-      run: npm install  # Install project dependencies
+      run: npm install
 
     - name: Build project
-      run: npm run build  # Build the Vite project
+      run: npm run build
 
-    - name: Start Vite app
-      run: npm run dev  # Start the Vite app (not typically done in CI but useful for local testing)
-      env:
-        CI: false  # Set CI environment variable to false to prevent certain behaviors
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist  # Adjust this if your build output directory is different
