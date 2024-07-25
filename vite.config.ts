@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+  base: '/pokedex/',
   server: {
     hmr: true, // Hot Module Replacement is enabled by default
     host: '0.0.0.0', // Allows access from any IP address
@@ -13,10 +14,12 @@ export default defineConfig({
         }
       }
     },
-    base: '/pokedex/',
     build: {
+      outDir: 'dist',
       rollupOptions: {
-        input: './src/app.ts'
+        input: {
+          main: './index.html'
+        }
       }
     }
   });

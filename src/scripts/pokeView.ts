@@ -111,7 +111,7 @@ export const search = async function (e : KeyboardEvent) {
                 }else{
                     resultsDOM.innerHTML = `
                     <div class="not-found-animation">
-                        <img src="/src/assets/psyduck_animation.gif">
+                        <img src="src/assets/psyduck_animation.gif">
                     </div>
                     <div class="not-found-message">
                         <h2>Oops! Sorry, we can't find that pokemon. </h2>
