@@ -18,6 +18,11 @@ export interface IType{
     url: string
 }
 
+export interface IEvolution{
+    name: string,
+    sprite: string
+}
+
 export interface IPokemon {
     id: number,
     name: string,
@@ -28,7 +33,8 @@ export interface IPokemon {
     sprite: string,
     species: string,
     generation?: string,
-    flavorText?:string
+    flavorText?:string,
+    evolutions: IEvolution[]
 }
 
 export class Pokemon implements IPokemon{
@@ -42,6 +48,7 @@ export class Pokemon implements IPokemon{
     species: string;
     generation?:string;
     flavorText?:string;
+    evolutions:IEvolution[];
     
 
     constructor(pokemon : Pokemon){
@@ -53,5 +60,6 @@ export class Pokemon implements IPokemon{
         this.types = pokemon.types;
         this.sprite = pokemon.sprite;
         this.species = pokemon.species;
+        this.evolutions = pokemon.evolutions;
     }
 }
