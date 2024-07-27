@@ -85,6 +85,23 @@ export const createCard = function(pokemon : Pokemon){
                                 </article>
                             </div>
                         </li>
+                        <li class="glide__slide">
+                            <div class="info-slide">
+                                <article>
+                                    <header>
+                                        <h3>Evolutions</h3>
+                                    </header>
+                                    <div class="evolutions">
+                                        ${pokemon.evolutions.map(evolution => `
+                                            <div class="evolution" data-name=${evolution.name}>
+                                                <img src="${evolution.sprite}"/>
+                                                <p>${evolution.name}</p>
+                                            </div>
+                                            `).join('')}
+                                    </div>
+                                </article>
+                            </div>
+                        </li>
                     </ul>
                 </div>
                  <div class="glide__arrows" data-glide-el="controls">
@@ -120,6 +137,7 @@ export const search = async function(query : string){
         setTimeout(()=>{
             if (result){
                 resultsDOM.innerHTML = createCard(result);
+                attachCardListeners();
                 new Glide('div.glide').mount()
             }else{
                 resultsDOM.innerHTML = `
@@ -155,6 +173,18 @@ export const handleKeyPress = async function (e : KeyboardEvent) {
 
     if(e.code === "Enter"){
         search(userInput);
+    }
+}
+
+export const attachCardListeners = function(){
+    const evolutions = document.querySelectorAll("div[class='evolutions'] > div");
+    console.log(evolutions);
+    if(evolutions){
+        evolutions.forEach(evolution=>{
+            evolution.addEventListener('click', (e : any)=>{
+                search(e.target.dataset.name);
+            })
+        })
     }
 }
 

@@ -191,9 +191,34 @@ body section[class=app] .pokedex .display-screen .results-screen .info-slide-wra
   padding: 10px;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
   gap: 10px;
 }
+body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .evolutions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  overflow-y: scroll;
+}
+body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .evolutions .evolution {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .evolutions .evolution:hover {
+  cursor: pointer;
+}
+body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .evolutions .evolution img {
+  pointer-events: none;
+}
+body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .evolutions .evolution p {
+  pointer-events: none;
+  text-transform: capitalize;
+}
 body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .moves {
+  width: 100%;
   overflow-y: scroll;
 }
 body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article header h3 {
