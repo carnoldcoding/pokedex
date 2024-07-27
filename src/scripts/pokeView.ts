@@ -96,50 +96,65 @@ export const createCard = function(pokemon : Pokemon){
     `;
 }
 
-export const search = async function (e : KeyboardEvent) {
+export const search = async function(query : string){
     const resultsDOM = document.querySelector(".results-screen") as HTMLElement;
-    const inputElement = e.target as HTMLInputElement;
-    const suggestionsElement = document.querySelector('aside > .search-suggestions');
+    const inputDOM = document.querySelector("input") as HTMLInputElement;
     const animation = searchbarAnimationReverse();
+    
+    inputDOM.value = "";
+    setTimeout(()=>{
+        inputDOM.blur();
+    }, 700)
 
-    if(isAlphabetical(e.key) && suggestionsElement){
-        const pokemonList = pokemonNames.filter(name => name.toLowerCase().includes(inputElement.value.toLowerCase()));
+    const userInput = query;
+    animation.play();
+    if(resultsDOM){
+        resultsDOM.innerHTML = `
+        <div class="loader">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>`;
+        loaderAnimation();
+        const result = await fetchPokemon(userInput.toLowerCase());
+        setTimeout(()=>{
+            if (result){
+                resultsDOM.innerHTML = createCard(result);
+                new Glide('div.glide').mount()
+            }else{
+                resultsDOM.innerHTML = `
+                <div class="not-found-animation">
+                    <img src="${psyduck}">
+                </div>
+                <div class="not-found-message">
+                    <h2>Oops! Sorry, we can't find that pokemon. </h2>
+                </div>
+                `;
+            }
+        }, 1500)
+        
+    }
+}
+
+export const makeSuggestions = async function(query : string){
+    const suggestionsElement = document.querySelector('aside > .search-suggestions');
+    if(isAlphabetical(query) && suggestionsElement){
+        const pokemonList = pokemonNames.filter(name => name.toLowerCase().includes(query));
         const suggestionsDOM = `
                 ${pokemonList.map(name => `<div><p>${name}</p></div>` ).join('')}
         `;
         suggestionsElement.innerHTML = suggestionsDOM;
     }
+}
+
+export const handleKeyPress = async function (e : KeyboardEvent) {
+    const inputElement = e.target as HTMLInputElement;
+    const userInput = inputElement.value.toLowerCase();
+
+    makeSuggestions(userInput);
+
     if(e.code === "Enter"){
-        const userInput = inputElement.value;
-        inputElement.value = "";
-        inputElement.blur();
-        animation.play();
-        if(resultsDOM){
-            resultsDOM.innerHTML = `
-            <div class="loader">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>`;
-            loaderAnimation();
-            const result = await fetchPokemon(userInput.toLowerCase());
-            setTimeout(()=>{
-                if (result){
-                    resultsDOM.innerHTML = createCard(result);
-                    new Glide('div.glide').mount()
-                }else{
-                    resultsDOM.innerHTML = `
-                    <div class="not-found-animation">
-                        <img src="${psyduck}">
-                    </div>
-                    <div class="not-found-message">
-                        <h2>Oops! Sorry, we can't find that pokemon. </h2>
-                    </div>
-                    `;
-                }
-            }, 1500)
-            
-        }
+        search(userInput);
     }
 }
 
@@ -148,7 +163,7 @@ const searchIconDOM = document.querySelector('.search');
 const searchbarDOM = document.querySelector("input");
 const suggestionsDOM = document.querySelector('aside > .search-suggestions');
 
-searchbarDOM?.addEventListener("keydown", search);
+searchbarDOM?.addEventListener("keydown", handleKeyPress);
 searchIconDOM?.addEventListener("click", ()=>{
     const animation = searchbarAnimation();
     animation.play();
@@ -159,5 +174,6 @@ searchIconDOM?.addEventListener("click", ()=>{
 suggestionsDOM?.addEventListener('click', (e : any) => {
     if(searchbarDOM){
         searchbarDOM.value = e.target.textContent;
+        search(e.target.textContent);
     }
 });
