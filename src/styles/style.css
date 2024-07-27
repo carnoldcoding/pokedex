@@ -167,6 +167,7 @@ body section[class=app] .pokedex .display-screen .results-screen .info-slide-wra
 }
 body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .glide__arrows button ion-icon {
   display: inline-block !important;
+  position: relative !important;
   opacity: 1 !important;
   color: white;
   font-size: 25px;
@@ -256,6 +257,8 @@ body section[class=app] .pokedex .display-screen .search-wrapper {
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
+  position: relative;
+  pointer-events: none;
 }
 body section[class=app] .pokedex .display-screen .search {
   background: rgba(255, 255, 255, 0.4);
@@ -265,14 +268,20 @@ body section[class=app] .pokedex .display-screen .search {
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05);
   border-radius: 10px;
   color: black;
-  position: realtive;
+  pointer-events: auto;
+  position: relative;
   height: 70px;
   width: 70px;
   display: grid;
   place-items: center;
+  transition: all 0.5s ease;
 }
 body section[class=app] .pokedex .display-screen .search:hover {
   cursor: pointer;
+}
+body section[class=app] .pokedex .display-screen .search:has(input:not(:placeholder-shown)) {
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
 }
 body section[class=app] .pokedex .display-screen .search input {
   display: none;
@@ -285,10 +294,51 @@ body section[class=app] .pokedex .display-screen .search input {
   text-align: center;
   font-size: clamp(15px, 3vw, 24px);
 }
+body section[class=app] .pokedex .display-screen .search input:not(:placeholder-shown) + .search-suggestions-wrapper {
+  height: 200px;
+}
 body section[class=app] .pokedex .display-screen .search ion-icon {
   font-size: 40px;
   color: white;
   transition: all 0.2s ease;
+}
+body section[class=app] .pokedex .display-screen aside {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  width: 100%;
+  height: 0px;
+  overflow: hidden;
+  z-index: 20;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+body section[class=app] .pokedex .display-screen aside .search-suggestions {
+  position: relative;
+  overflow-y: scroll;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid white;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  color: black;
+  max-height: 200px;
+  min-height: 50px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom-left-radius: unset;
+  border-bottom-right-radius: unset;
+}
+body section[class=app] .pokedex .display-screen aside .search-suggestions div p {
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+}
+body section[class=app] .pokedex .display-screen aside .search-suggestions div:hover {
+  cursor: pointer;
+  background: rgba(255, 247, 247, 0.3);
 }
 
 /*# sourceMappingURL=style.css.map */

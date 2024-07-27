@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "@types/glidejs__glide": "^3.6.5",
+    "@types/node": "^20.14.12",
     "sass": "^1.77.8"
   }
 }

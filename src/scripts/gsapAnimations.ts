@@ -19,7 +19,7 @@ export const loaderAnimation = function(){
 }
 
 export const searchbarAnimation = function(){
-        let tl = gsap.timeline({});
+        let tl = gsap.timeline({paused: true});
         const defaultDuration = .2;
         const defaultEase = "power3.inOut";
     
@@ -27,9 +27,10 @@ export const searchbarAnimation = function(){
             duration: defaultDuration,
             ease: defaultEase,
             opacity: 0,
-            display: "none"
+            position: "absolute",
+            userSelect: "none"
         }).to(".search",{
-            width: "100%",
+            width: "400px",
             duration: defaultDuration,
             ease: defaultEase
         }).to("input",{
@@ -37,4 +38,33 @@ export const searchbarAnimation = function(){
             duration: defaultDuration,
             display: "inline-block"
         })
+        
+        return tl;
+}
+
+export const searchbarAnimationReverse = function(){
+    let tl = gsap.timeline({paused: true});
+    const defaultDuration = 0.2;
+    const defaultEase = "power3.inOut";
+    
+    tl.to("ion-icon", {
+        duration: defaultDuration,
+        ease: defaultEase,
+        position: "relative", // Assuming it should return to its normal flow
+        userSelect: "auto" // Assuming it should return to selectable
+    }).to("ion-icon",{
+        opacity: 1,
+    })
+    .to(".search", {
+        width: "70px", // Change back to initial width
+        duration: defaultDuration,
+        ease: defaultEase
+    }, "<") // Ensure it starts at the same time as the previous tween
+    .to("input", {
+        ease: defaultEase,
+        duration: defaultDuration,
+        display: "none" // Change back to initial display state
+    }, "<") // Ensure it starts at the same time as the previous tween
+    
+    return tl;
 }

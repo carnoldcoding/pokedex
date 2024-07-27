@@ -1,7 +1,9 @@
 import { Pokemon } from "./pokeModel.js";
 import { fetchPokemon } from "./pokeAPI.js";
-import { loaderAnimation, searchbarAnimation } from "./gsapAnimations.js";
+import { pokemonNames } from "./pokeDB.js";
+import { loaderAnimation, searchbarAnimation, searchbarAnimationReverse } from "./gsapAnimations.js";
 import Glide from '@glidejs/glide'
+import { isAlphabetical } from "./utilities.js";
 
 import pokeball from "../assets/pokeball.png"
 import psyduck from "../assets/psyduck_animation.gif"
@@ -91,17 +93,27 @@ export const createCard = function(pokemon : Pokemon){
                 </div>
             </div>
         </div>
-
-        
-        
     `;
 }
 
 export const search = async function (e : KeyboardEvent) {
     const resultsDOM = document.querySelector(".results-screen") as HTMLElement;
     const inputElement = e.target as HTMLInputElement;
+    const suggestionsElement = document.querySelector('aside > .search-suggestions');
+    const animation = searchbarAnimationReverse();
+
+    if(isAlphabetical(e.key) && suggestionsElement){
+        const pokemonList = pokemonNames.filter(name => name.toLowerCase().includes(inputElement.value.toLowerCase()));
+        const suggestionsDOM = `
+                ${pokemonList.map(name => `<div><p>${name}</p></div>` ).join('')}
+        `;
+        suggestionsElement.innerHTML = suggestionsDOM;
+    }
     if(e.code === "Enter"){
+        const userInput = inputElement.value;
+        inputElement.value = "";
         inputElement.blur();
+        animation.play();
         if(resultsDOM){
             resultsDOM.innerHTML = `
             <div class="loader">
@@ -110,7 +122,7 @@ export const search = async function (e : KeyboardEvent) {
                 <div></div>
             </div>`;
             loaderAnimation();
-            const result = await fetchPokemon(inputElement.value.toLowerCase());
+            const result = await fetchPokemon(userInput.toLowerCase());
             setTimeout(()=>{
                 if (result){
                     resultsDOM.innerHTML = createCard(result);
@@ -134,9 +146,18 @@ export const search = async function (e : KeyboardEvent) {
 //Attach Event Listeners
 const searchIconDOM = document.querySelector('.search');
 const searchbarDOM = document.querySelector("input");
+const suggestionsDOM = document.querySelector('aside > .search-suggestions');
 
 searchbarDOM?.addEventListener("keydown", search);
 searchIconDOM?.addEventListener("click", ()=>{
-    searchbarAnimation();
+    const animation = searchbarAnimation();
+    animation.play();
     setTimeout(()=>{searchbarDOM?.focus();}, 500);
+});
+
+//Figure out how to change e : any to the appropriate type
+suggestionsDOM?.addEventListener('click', (e : any) => {
+    if(searchbarDOM){
+        searchbarDOM.value = e.target.textContent;
+    }
 });
