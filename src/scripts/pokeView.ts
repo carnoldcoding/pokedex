@@ -158,7 +158,7 @@ export const makeSuggestions = async function(query : string){
     const suggestionsElement = document.querySelector('aside > .search-suggestions');
     if(isAlphabetical(query) && suggestionsElement){
         const pokemonList = pokemonNames
-      .filter(name => name.toLowerCase().includes(query.toLowerCase()))
+      .filter(name => name.toLowerCase().startsWith(query.toLowerCase()))
       .sort((a, b) => a.toLowerCase().indexOf(query.toLowerCase()) - b.toLowerCase().indexOf(query.toLowerCase()));
       
       const suggestionsDOM = pokemonList.map(name => {
