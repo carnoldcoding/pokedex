@@ -400,7 +400,7 @@ body{
                     pointer-events: auto;
                     position: relative;
                     height: 70px;
-                    width: 70px;
+                    width: 100%;
                     display: grid;
                     place-items: center;
                     transition: all .5s ease;
@@ -412,14 +412,14 @@ body{
                         border-top-left-radius: 0px;
                     }
                     input{
-                        display: none;
                         height: 100%;
                         width: 100%;
                         left: 0;
                         background: transparent;
                         caret-color: white;
                         padding: 10px;
-                        text-align: center;
+                        padding-left: 70px;
+                        text-align: left;
                         font-size: clamp(15px, 3vw, 24px);
                         &:not(:placeholder-shown){
                             &+.search-suggestions-wrapper{
@@ -429,6 +429,8 @@ body{
                     }
                     ion-icon{
                         font-size: 40px;
+                        position: absolute;
+                        left: 15px;
                         color: white;
                         transition: all .2s ease;
                     }  

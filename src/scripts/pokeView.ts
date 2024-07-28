@@ -1,7 +1,7 @@
 import { Pokemon } from "./pokeModel.js";
 import { fetchPokemon } from "./pokeAPI.js";
 import { pokemonNames } from "./pokeDB.js";
-import { loaderAnimation, searchbarAnimation, searchbarAnimationReverse } from "./gsapAnimations.js";
+import { loaderAnimation } from "./gsapAnimations.js";
 import Glide from '@glidejs/glide'
 import { isAlphabetical } from "./utilities.js";
 
@@ -116,7 +116,6 @@ export const createCard = function(pokemon : Pokemon){
 export const search = async function(query : string){
     const resultsDOM = document.querySelector(".results-screen") as HTMLElement;
     const inputDOM = document.querySelector("input") as HTMLInputElement;
-    const animation = searchbarAnimationReverse();
     
     inputDOM.value = "";
     setTimeout(()=>{
@@ -124,7 +123,6 @@ export const search = async function(query : string){
     }, 700)
 
     const userInput = query;
-    animation.play();
     if(resultsDOM){
         resultsDOM.innerHTML = `
         <div class="loader">
@@ -194,18 +192,12 @@ export const attachCardListeners = function(){
 }
 
 //Attach Event Listeners
-const searchIconDOM = document.querySelector('.search');
 const searchbarDOM = document.querySelector("input");
 const suggestionsDOM = document.querySelector('aside > .search-suggestions');
 const pokedexButtonDOM = document.querySelectorAll('.pokedex .ui-semicircle > .button');
 const pokedexDOM = document.querySelector(".pokedex");
 
 searchbarDOM?.addEventListener("keyup", handleKeyPress);
-searchIconDOM?.addEventListener("click", ()=>{
-    const animation = searchbarAnimation();
-    animation.play();
-    setTimeout(()=>{searchbarDOM?.focus();}, 500);
-});
 
 //Figure out how to change e : any to the appropriate type
 suggestionsDOM?.addEventListener('click', (e : any) => {
@@ -218,5 +210,6 @@ suggestionsDOM?.addEventListener('click', (e : any) => {
 pokedexButtonDOM?.forEach(button => {
     button.addEventListener("click", (e : any) =>{
         pokedexDOM?.classList.toggle("open");
+        searchbarDOM?.focus();
     })
 })

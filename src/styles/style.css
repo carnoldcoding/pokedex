@@ -391,7 +391,7 @@ body section[class=app] .pokedex .display-screen .search {
   pointer-events: auto;
   position: relative;
   height: 70px;
-  width: 70px;
+  width: 100%;
   display: grid;
   place-items: center;
   transition: all 0.5s ease;
@@ -404,14 +404,14 @@ body section[class=app] .pokedex .display-screen .search:has(input:not(:placehol
   border-top-left-radius: 0px;
 }
 body section[class=app] .pokedex .display-screen .search input {
-  display: none;
   height: 100%;
   width: 100%;
   left: 0;
   background: transparent;
   caret-color: white;
   padding: 10px;
-  text-align: center;
+  padding-left: 70px;
+  text-align: left;
   font-size: clamp(15px, 3vw, 24px);
 }
 body section[class=app] .pokedex .display-screen .search input:not(:placeholder-shown) + .search-suggestions-wrapper {
@@ -419,6 +419,8 @@ body section[class=app] .pokedex .display-screen .search input:not(:placeholder-
 }
 body section[class=app] .pokedex .display-screen .search ion-icon {
   font-size: 40px;
+  position: absolute;
+  left: 15px;
   color: white;
   transition: all 0.2s ease;
 }
