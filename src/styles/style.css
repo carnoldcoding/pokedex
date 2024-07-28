@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Itim&family=Teko:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 @font-face {
   font-family: "PokemonGB";
   src: url("fonts/PKMN RBYGSC.ttf") format("truetype");
@@ -9,7 +12,7 @@
   border: 0;
   outline: 0;
   box-sizing: border-box;
-  font-family: "PokemonGB";
+  font-family: "Chakra Petch", sans-serif;
 }
 
 body {
@@ -19,7 +22,7 @@ body {
   overflow: hidden;
 }
 body h3 {
-  font-size: clamp(12px, 2vw, 25px);
+  font-size: clamp(18px, 4vw, 25px);
 }
 body section[class=app] {
   display: flex;
@@ -244,7 +247,8 @@ body section[class=app] .pokedex .display-screen .results-screen .info-slide-wra
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05);
   border-radius: 10px;
   color: black;
-  padding: 5px;
+  padding: clamp(1px, 0.5vw, 5px);
+  width: 100%;
 }
 body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .glide__arrows button:hover {
   cursor: pointer;
@@ -344,8 +348,8 @@ body section[class=app] .pokedex .display-screen .results-screen .basic-info-wra
   gap: 5px;
 }
 body section[class=app] .pokedex .display-screen .results-screen .basic-info-wrapper .basic-info .name img {
-  height: 35px;
-  width: 35px;
+  height: clamp(25px, 5vw, 35px);
+  width: clamp(25px, 5vw, 35px);
 }
 body section[class=app] .pokedex .display-screen .results-screen .basic-info-wrapper .basic-info .name h3 {
   text-transform: capitalize;
@@ -356,7 +360,8 @@ body section[class=app] .pokedex .display-screen .results-screen .basic-info-wra
 }
 body section[class=app] .pokedex .display-screen .results-screen .basic-info-wrapper .basic-info .types p {
   text-transform: uppercase;
-  font-size: clamp(9px, 1vw, 13px);
+  font-size: clamp(12px, 2vw, 15px);
+  font-weight: 600;
   border-radius: 5px;
   padding: 10px;
 }
