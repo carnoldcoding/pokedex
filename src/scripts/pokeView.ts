@@ -157,10 +157,15 @@ export const search = async function(query : string){
 export const makeSuggestions = async function(query : string){
     const suggestionsElement = document.querySelector('aside > .search-suggestions');
     if(isAlphabetical(query) && suggestionsElement){
-        const pokemonList = pokemonNames.filter(name => name.toLowerCase().includes(query));
-        const suggestionsDOM = `
-                ${pokemonList.map(name => `<div><p>${name}</p></div>` ).join('')}
-        `;
+        const pokemonList = pokemonNames
+      .filter(name => name.toLowerCase().includes(query.toLowerCase()))
+      .sort((a, b) => a.toLowerCase().indexOf(query.toLowerCase()) - b.toLowerCase().indexOf(query.toLowerCase()));
+      
+      const suggestionsDOM = pokemonList.map(name => {
+        const regex = new RegExp(`(${query})`, 'gi');
+        const highlightedName = name.replace(regex, '<strong>$1</strong>');
+        return `<div><p>${highlightedName}</p></div>`;
+      }).join('');
         suggestionsElement.innerHTML = suggestionsDOM;
     }
 }
@@ -195,7 +200,7 @@ const suggestionsDOM = document.querySelector('aside > .search-suggestions');
 const pokedexButtonDOM = document.querySelectorAll('.pokedex .ui-semicircle > .button');
 const pokedexDOM = document.querySelector(".pokedex");
 
-searchbarDOM?.addEventListener("keydown", handleKeyPress);
+searchbarDOM?.addEventListener("keyup", handleKeyPress);
 searchIconDOM?.addEventListener("click", ()=>{
     const animation = searchbarAnimation();
     animation.play();
