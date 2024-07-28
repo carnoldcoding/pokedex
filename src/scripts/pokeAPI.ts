@@ -31,7 +31,9 @@ export const fetchPokemon = async function(query : string){
                             if(linkSpecies){
                                 const {name, sprite} = linkSpecies;
                                 const evolution : IEvolution = {name, sprite};
-                                pokemon.evolutions.push(evolution);
+                                if(evolution.name != pokemon.name){
+                                    pokemon.evolutions.push(evolution);
+                                }
                             }
 
                         } catch (error) {

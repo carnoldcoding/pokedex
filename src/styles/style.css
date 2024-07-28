@@ -24,6 +24,9 @@ body {
 body h3 {
   font-size: clamp(18px, 4vw, 25px);
 }
+body p {
+  font-size: clamp(14px, 4vw, 18px);
+}
 body section[class=app] {
   display: flex;
   justify-content: center;
