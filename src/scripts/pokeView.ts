@@ -192,6 +192,8 @@ export const attachCardListeners = function(){
 const searchIconDOM = document.querySelector('.search');
 const searchbarDOM = document.querySelector("input");
 const suggestionsDOM = document.querySelector('aside > .search-suggestions');
+const pokedexButtonDOM = document.querySelectorAll('.pokedex .ui-semicircle');
+const pokedexDOM = document.querySelector(".pokedex");
 
 searchbarDOM?.addEventListener("keydown", handleKeyPress);
 searchIconDOM?.addEventListener("click", ()=>{
@@ -207,3 +209,9 @@ suggestionsDOM?.addEventListener('click', (e : any) => {
         search(e.target.textContent);
     }
 });
+
+pokedexButtonDOM?.forEach(button => {
+    button.addEventListener("click", (e : any) =>{
+        pokedexDOM?.classList.toggle("open");
+    })
+})

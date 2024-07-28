@@ -13,8 +13,10 @@
 }
 
 body {
+  max-height: 100dvh;
   height: 100dvh;
   width: 100dvw;
+  overflow: hidden;
 }
 body h3 {
   font-size: clamp(12px, 2vw, 25px);
@@ -32,16 +34,85 @@ body section[class=app] {
   padding: 5px;
 }
 body section[class=app] .pokedex {
-  height: clamp(650px, 95dvw, 750px);
   width: clamp(320px, 95dvw, 450px);
   position: relative;
   border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 0px;
+  transition: 0.5s ease;
+}
+body section[class=app] .pokedex.open {
+  height: clamp(500px, 95dvw, 600px);
+}
+body section[class=app] .pokedex .case {
+  position: absolute;
+  height: 200px;
+  width: 100%;
+  background: #e3211f;
+  z-index: 10;
+  border-radius: 20px 20px 0px 0px;
+  overflow: hidden;
+  transform-origin: center;
+}
+body section[class=app] .pokedex .case .outer-ring {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  border-radius: 100%;
+  border: 10px solid #900f0a;
+  border-top: unset;
+}
+body section[class=app] .pokedex .case .outer-ring.top {
+  top: 0;
+}
+body section[class=app] .pokedex .case .outer-ring.top.right {
+  right: 0;
+  transform: translate(50%, -50%);
+}
+body section[class=app] .pokedex .case .outer-ring.top.left {
+  left: 0;
+  transform: translate(-50%, -50%);
+}
+body section[class=app] .pokedex .case .outer-ring.top.inner {
+  height: 125px;
+  width: 125px;
+}
+body section[class=app] .pokedex .case .black-semicircle {
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250px;
+  height: 125px;
+  border-radius: 150px 150px 0px 0px;
+  background: black;
+  border-bottom: unset;
+}
+body section[class=app] .pokedex .case .black-semicircle .ui-semicircle {
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px;
+  height: 80px;
+  border-radius: 150px 150px 0px 0px;
+  border-bottom: unset;
+  background: white;
+}
+body section[class=app] .pokedex .case .black-semicircle .ui-semicircle:hover {
+  cursor: pointer;
+}
+body section[class=app] .pokedex .case.top {
+  bottom: 100%;
+}
+body section[class=app] .pokedex .case.bottom {
+  top: 100%;
+  transform: rotate(180deg);
 }
 body section[class=app] .pokedex .display-screen {
-  height: 80%;
+  height: 100%;
   width: 100%;
   background: rgba(82, 174, 223, 0.1);
   backdrop-filter: blur(10px);

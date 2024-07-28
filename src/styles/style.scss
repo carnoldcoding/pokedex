@@ -42,8 +42,10 @@ body{
     h3{
         font-size: clamp(12px, 2vw, 25px);
     }
+    max-height: 100dvh;
     height: 100dvh;
     width: 100dvw;
+    overflow:hidden;
 
     section[class="app"]{
         display: flex;
@@ -58,16 +60,92 @@ body{
         padding: 5px;
 
         .pokedex{
-            height: clamp(650px, 95dvw, 750px);
             width: clamp(320px, 95dvw, 450px);
             position: relative;
             border-radius: $pokedex-radius;
             display: flex;
             align-items: center;
             justify-content: center;
+            height: 0px;
+            transition: .5s ease;
+
+            &.open{
+                height: clamp(500px, 95dvw, 600px);
+            }
+
+            .case{
+                position: absolute;
+                height: 200px;
+                width: 100%;
+                background: $pokedex-red;
+                z-index: 10;
+                border-radius: 20px 20px 0px 0px;
+                overflow: hidden;
+                transform-origin: center;
+
+                .outer-ring{
+                    position: absolute;
+                    width: 250px;
+                    height: 250px;
+                    border-radius: 100%;
+                    border: 10px solid $pokedex-dark-red;
+                    border-top: unset;
+
+                    &.top{
+                        top: 0;
+                        &.right{
+                            right: 0;
+                            transform: translate(50%, -50%);
+                        }
+                        &.left{
+                            left: 0;
+                            transform: translate(-50%, -50%);
+                        }
+                        &.inner{
+                            height: 125px;
+                            width: 125px;
+                        }
+                    }
+                }
+
+                .black-semicircle{
+                    position: absolute;
+                    bottom: 0px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 250px;
+                    height: 125px;
+                    border-radius: 150px 150px 0px 0px;
+                    background: black;
+                    border-bottom: unset;
+                    
+                    .ui-semicircle{
+                        position: absolute;
+                        bottom: 0px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: 160px;
+                        height: 80px;
+                        border-radius: 150px 150px 0px 0px;
+                        border-bottom: unset;
+                        background: white;
+
+                        &:hover{
+                            cursor: pointer;
+                        }
+                    }
+                }
+                &.top{
+                    bottom: 100%;
+                }
+                &.bottom{
+                    top: 100%;
+                    transform: rotate(180deg);
+                }
+            }
 
             .display-screen{
-                height: 80%;
+                height: 100%;
                 width: 100%;
                 background: rgba(82, 174, 223, .1);
                 backdrop-filter: blur(10px);

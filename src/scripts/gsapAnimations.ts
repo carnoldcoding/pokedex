@@ -1,5 +1,17 @@
 import gsap from "gsap";
 
+export const openPokedexAnimation = function(){
+    const tl = gsap.timeline({paused: true});
+
+    const defaultDuration = .5;
+    tl.to(".pokedex", {
+        height: "clamp(500px, 95dvw, 600px",
+        duration: defaultDuration
+    });
+
+    return tl;
+}
+
 export const loaderAnimation = function(){
     const tl = gsap.timeline({ repeat: -1 });
     const circles = document.querySelectorAll(".loader > div");
