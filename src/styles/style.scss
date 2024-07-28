@@ -66,7 +66,7 @@ body{
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 0px;
+            height: 20px;
             transition: .5s ease;
 
             &.open{
@@ -76,7 +76,7 @@ body{
             .case{
                 position: absolute;
                 height: 200px;
-                width: 100%;
+                width: calc(100% + 5px);
                 background: $pokedex-red;
                 z-index: 10;
                 border-radius: 20px 20px 0px 0px;
@@ -85,11 +85,11 @@ body{
                 border: 2px solid $pokedex-dark-red;
                 border-bottom: unset;
                 &.top{
-                    bottom: 100%;
+                    bottom: calc(100% - 10px);
                     border-bottom: 1px solid gray;
                 }
                 &.bottom{
-                    top: 100%;
+                    top: calc(100% - 10px);
                     transform: rotate(180deg);
                     border-top: 1px solid gray;
                 }
