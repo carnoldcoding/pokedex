@@ -12,7 +12,14 @@ export const fetchPokemon = async function(query : string){
                 const parsedGeneration = generation.name.split('-')[1];
                 pokemon.generation = parsedGeneration;
 
-                const parsedFlavorText = flavor_text_entries[0].flavor_text;
+                let parsedFlavorText = "";
+
+                flavor_text_entries.forEach((entry : {flavor_text : string, language: {name: string, url: string}}) => {
+                    if(entry.language.name === "en" && parsedFlavorText === ""){
+                        parsedFlavorText = entry.flavor_text;
+                    }
+                })
+
                 pokemon.flavorText = parsedFlavorText;
 
                 try {
