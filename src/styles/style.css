@@ -100,8 +100,20 @@ body section[class=app] .pokedex .case .black-semicircle .ui-semicircle {
   border-radius: 150px 150px 0px 0px;
   border-bottom: unset;
   background: white;
+  overflow: hidden;
 }
-body section[class=app] .pokedex .case .black-semicircle .ui-semicircle:hover {
+body section[class=app] .pokedex .case .black-semicircle .ui-semicircle .button {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  border: 2px solid rgb(194, 194, 194);
+  box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.03), 0px 0px 10px 15px rgba(0, 0, 0, 0.03);
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+body section[class=app] .pokedex .case .black-semicircle .ui-semicircle .button:hover {
   cursor: pointer;
 }
 body section[class=app] .pokedex .case.top {

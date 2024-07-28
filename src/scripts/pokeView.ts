@@ -192,7 +192,7 @@ export const attachCardListeners = function(){
 const searchIconDOM = document.querySelector('.search');
 const searchbarDOM = document.querySelector("input");
 const suggestionsDOM = document.querySelector('aside > .search-suggestions');
-const pokedexButtonDOM = document.querySelectorAll('.pokedex .ui-semicircle');
+const pokedexButtonDOM = document.querySelectorAll('.pokedex .ui-semicircle > .button');
 const pokedexDOM = document.querySelector(".pokedex");
 
 searchbarDOM?.addEventListener("keydown", handleKeyPress);
