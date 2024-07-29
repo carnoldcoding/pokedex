@@ -39,7 +39,7 @@ export const fetchPokemon = async function(query : string){
                     chain = evolutionChain.chain;
 
                     //Follow evolution chain laterally
-                    for(let i = 0; i < chain.evolves_to.length - 1; i++){
+                    for(let i = 0; i < chain.evolves_to.length; i++){
                         if(chain.evolves_to[i]){
                             if(!chainList.includes(chain.evolves_to[i].species)){
                                 chainList.push(chain.evolves_to[i].species);
