@@ -121,6 +121,23 @@ export const createCard = function(pokemon : Pokemon){
                                 </article>
                             </div>
                         </li>
+                        <li class="glide__slide">
+                            <div class="info-slide">
+                                <article>
+                                    <header>
+                                        <h3>Stats</h3>
+                                    </header>
+                                    <div class="stats">
+                                    ${pokemon.stats.map(stat => `
+                                        <div class="stat">
+                                            <p>${stat.name}</p>
+                                            <p>${stat.value}</p>
+                                        </div>
+                                        `).join('')}
+                                    </div>
+                                </article>
+                            </div>
+                        </li>
                     </ul>
                 </div>
                  <div class="glide__arrows" data-glide-el="controls">

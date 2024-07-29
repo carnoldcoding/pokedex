@@ -32,12 +32,18 @@ export interface ISprites{
     frontShinyFemale?: string,
 }
 
+export interface IStat{
+    name: string,
+    value: number
+}
+
 export interface IPokemon {
     id: number,
     name: string,
     abilities: IAbility[],
     forms: IForm[],
     moves: IMove[],
+    stats: IStat[],
     types: IType[],
     sprites: ISprites,
     species: string,
@@ -52,6 +58,7 @@ export class Pokemon implements IPokemon{
     abilities: IAbility[];
     forms: IForm[];
     moves: IMove[];
+    stats: IStat[];
     types: IType[];
     sprites: ISprites;
     species: string;
@@ -70,5 +77,6 @@ export class Pokemon implements IPokemon{
         this.sprites = pokemon.sprites;
         this.species = pokemon.species;
         this.evolutions = pokemon.evolutions;
+        this.stats = pokemon.stats;
     }
 }

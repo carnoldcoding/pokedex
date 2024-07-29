@@ -1,4 +1,4 @@
-import { Pokemon, IAbility, IForm, IMove, IType, IEvolution, ISprite } from "./pokeModel.js";
+import { Pokemon, IAbility, IForm, IMove, IType, IEvolution, ISprite, IStat } from "./pokeModel.js";
 
 export const fetchPokemon = async function(query : string){
     try {
@@ -88,11 +88,24 @@ export const fetchPokemonBasic = async function(query : string){
 
         }else{
             const data = await response.json();
-            const {name, abilities, forms, moves, types, sprites, id, species } = data;
+            const {name, abilities, forms, moves, types, sprites, id, species, stats } = data;
             const pAbilities : IAbility[] = [];
             const pForms : IForm[] = [];
             const pMoves : IMove[] = [];
             const pTypes : IType[] = [];
+            const pStats : IStat[] = [];
+
+            //Handle Stats
+            stats.forEach((stat : any) =>{
+                const {
+                    base_stat: baseStat,
+                    stat: {
+                        name: baseName
+                    }
+                } = stat;
+
+                pStats.push({name: baseName, value: baseStat});
+            })
 
             //Handle Sprites
             const {front_default : frontDefault, 
@@ -125,7 +138,16 @@ export const fetchPokemonBasic = async function(query : string){
                 pTypes.push(entity.type);
             })
 
-            return (new Pokemon({id: id, name : name, abilities: pAbilities, forms: pForms, moves: pMoves, types: pTypes, sprites : pSprites, species : speciesId, evolutions : []}))
+            return (new Pokemon({id: id, 
+                name : name,
+                abilities: pAbilities, 
+                forms: pForms, 
+                stats: pStats,
+                moves: pMoves, 
+                types: pTypes, 
+                sprites : pSprites, 
+                species : speciesId, 
+                evolutions : []}))
         }
     } catch (error) {
         console.error("Unable to fetch pokemon, exited with error: ", error)
