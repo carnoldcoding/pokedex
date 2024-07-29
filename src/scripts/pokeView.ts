@@ -296,11 +296,16 @@ const searchbarDOM = document.querySelector("input");
 const suggestionsDOM = document.querySelector('aside > .search-suggestions');
 const pokedexButtonDOM = document.querySelectorAll('.pokedex .ui-semicircle > .button');
 const pokedexDOM = document.querySelector(".pokedex");
+const suggestionPlaceholder = document.querySelector('.search-wrapper > .search > p');
+
 
 searchbarDOM?.addEventListener("keyup", handleKeyPress);
 
 //Figure out how to change e : any to the appropriate type
 suggestionsDOM?.addEventListener('click', (e : any) => {
+    if(suggestionPlaceholder){
+        suggestionPlaceholder.textContent = "";
+    }
     if(searchbarDOM){
         searchbarDOM.value = e.target.textContent;
         search(e.target.textContent);
