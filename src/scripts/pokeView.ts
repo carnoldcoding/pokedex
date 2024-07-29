@@ -102,6 +102,23 @@ export const createCard = function(pokemon : Pokemon){
                                 </article>
                             </div>
                         </li>
+                        <li class="glide__slide">
+                            <div class="info-slide">
+                                <article>
+                                    <header>
+                                        <h3>Sprites</h3>
+                                    </header>
+                                    <div class="sprites">
+                                        <div>
+                                            <img src="${pokemon.sprites.frontDefault}"/>
+                                        </div>
+                                        <div>
+                                            <img src="${pokemon.sprites.frontShiny}"/>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                        </li>
                     </ul>
                 </div>
                  <div class="glide__arrows" data-glide-el="controls">
@@ -122,7 +139,9 @@ export const search = async function(query : string){
         inputDOM.blur();
     }, 700)
 
+
     const userInput = query;
+
     if(resultsDOM){
         resultsDOM.innerHTML = `
         <div class="loader">
@@ -186,12 +205,15 @@ export const handleKeyPress = async function (e : KeyboardEvent) {
     if(suggestions && suggestionPlaceholder){
         suggestionPlaceholder.textContent = suggestions[0];
     }
+
     if(e.code === "Enter" && suggestions && suggestionPlaceholder){
         suggestionPlaceholder.textContent = "";
         if(suggestions.includes(userInput)){
             search(userInput);
-        }else{
+        }else if(suggestions.length > 0){
             search(suggestions[0]);
+        }else{
+            search(userInput);
         }
     }
 }

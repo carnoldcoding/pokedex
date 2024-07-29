@@ -302,6 +302,15 @@ body{
                                 align-items: flex-start;
                                 justify-content: flex-start;
                                 gap: 10px;
+
+                                .sprites{
+                                    display: flex;
+                                    gap: 5px;
+                                    overflow-y: scroll;
+                                    height: 100%;
+                                    width: 100%;
+                                }
+
                                 .evolutions{
                                     display: flex;
                                     flex-wrap: wrap;
