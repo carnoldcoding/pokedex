@@ -161,6 +161,7 @@ body section[class=app] .pokedex .display-screen .results-screen {
 }
 body section[class=app] .pokedex .display-screen .results-screen .not-found-animation {
   grid-column: span 3;
+  padding: 10px;
 }
 body section[class=app] .pokedex .display-screen .results-screen .not-found-animation img {
   height: 100%;
