@@ -24,12 +24,27 @@ export const fetchPokemon = async function(query : string){
 
                 try {
                     const evolutionChain = await fetchEvolutionChain(evolution_chain.url);
+
                     let chain = evolutionChain.chain;
                     const chainList : {name: string, url: string}[] =  [];
                     chainList.push(chain.species);
+
+                    //Follow evolution chain depth-wise
                     while(chain.evolves_to[0]){
                         chain = chain.evolves_to[0];
                         chainList.push(chain.species);
+                    }
+
+                    //Reset Chain
+                    chain = evolutionChain.chain;
+
+                    //Follow evolution chain laterally
+                    for(let i = 0; i < chain.evolves_to.length - 1; i++){
+                        if(chain.evolves_to[i]){
+                            if(!chainList.includes(chain.evolves_to[i].species)){
+                                chainList.push(chain.evolves_to[i].species);
+                            }
+                        }
                     }
 
                     for (const link of chainList){
