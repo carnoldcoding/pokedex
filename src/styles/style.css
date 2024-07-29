@@ -134,6 +134,7 @@ body section[class=app] .pokedex .case .black-semicircle .ui-semicircle .button:
   cursor: pointer;
 }
 body section[class=app] .pokedex .display-screen {
+  overflow: hidden;
   height: 100%;
   width: 100%;
   background: rgba(82, 174, 223, 0.1);
