@@ -152,10 +152,10 @@ export const search = async function(query : string){
     }
 }
 
-export const makeSuggestions = async function(query : string){
+export const makeSuggestions = function(query : string){
     const suggestionsElement = document.querySelector('aside > .search-suggestions');
     if(isAlphabetical(query) && suggestionsElement){
-        const pokemonList = pokemonNames
+        const pokemonList  = pokemonNames
       .filter(name => name.toLowerCase().startsWith(query.toLowerCase()))
       .sort((a, b) => a.toLowerCase().indexOf(query.toLowerCase()) - b.toLowerCase().indexOf(query.toLowerCase()));
       
@@ -165,23 +165,36 @@ export const makeSuggestions = async function(query : string){
         return `<div><p>${highlightedName}</p></div>`;
       }).join('');
         suggestionsElement.innerHTML = suggestionsDOM;
+        return pokemonList;
     }
 }
 
 export const handleKeyPress = async function (e : KeyboardEvent) {
     const inputElement = e.target as HTMLInputElement;
     const userInput = inputElement.value.toLowerCase();
+    const suggestionPlaceholder = document.querySelector('.search-wrapper > .search > p');
 
-    makeSuggestions(userInput);
+    const suggestions = makeSuggestions(userInput);
 
-    if(e.code === "Enter"){
-        search(userInput);
+    //Automatically choose the closest suggestion
+    if(suggestions && suggestionPlaceholder){
+        suggestionPlaceholder.textContent = suggestions[0];
+        if(userInput == ""){
+            suggestionPlaceholder.textContent = "";
+        }
+    }
+    if(e.code === "Enter" && suggestions && suggestionPlaceholder){
+        suggestionPlaceholder.textContent = "";
+        if(suggestions.includes(userInput)){
+            search(userInput);
+        }else{
+            search(suggestions[0]);
+        }
     }
 }
 
 export const attachCardListeners = function(){
     const evolutions = document.querySelectorAll("div[class='evolutions'] > div");
-    console.log(evolutions);
     if(evolutions){
         evolutions.forEach(evolution=>{
             evolution.addEventListener('click', (e : any)=>{

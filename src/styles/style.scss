@@ -307,7 +307,6 @@ body{
                                     flex-wrap: wrap;
                                     height: 100%;
                                     width: 100%;
-                                    place-items: center;
                                     gap: 5px;
                                     overflow-y: scroll;
                                     .evolution{
@@ -413,6 +412,24 @@ body{
                     display: grid;
                     place-items: center;
                     transition: all .5s ease;
+
+                    .suggestion-placeholder{
+                        position: absolute;
+                        height: 100%;
+                        width: 100%;
+                        left: 0;
+                        padding: 10px;
+                        padding-left: 70px;
+                        font-size: clamp(15px, 3vw, 24px);
+                        text-align: left;
+                        display: flex;
+                        align-items: center;
+                        pointer-events: none;
+                        color: rgba(0, 0, 0, 0.3);
+                        text-transform: lowercase;
+
+                    }
+                    
                     &:hover{
                         cursor: pointer;
                     }
@@ -425,6 +442,7 @@ body{
                         width: 100%;
                         left: 0;
                         background: transparent;
+                        text-transform: lowercase;
                         caret-color: white;
                         padding: 10px;
                         padding-left: 70px;

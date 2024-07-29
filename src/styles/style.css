@@ -294,7 +294,6 @@ body section[class=app] .pokedex .display-screen .results-screen .info-slide-wra
   flex-wrap: wrap;
   height: 100%;
   width: 100%;
-  place-items: center;
   gap: 5px;
   overflow-y: scroll;
 }
@@ -405,6 +404,21 @@ body section[class=app] .pokedex .display-screen .search {
   place-items: center;
   transition: all 0.5s ease;
 }
+body section[class=app] .pokedex .display-screen .search .suggestion-placeholder {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  padding: 10px;
+  padding-left: 70px;
+  font-size: clamp(15px, 3vw, 24px);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  color: rgba(0, 0, 0, 0.3);
+  text-transform: lowercase;
+}
 body section[class=app] .pokedex .display-screen .search:hover {
   cursor: pointer;
 }
@@ -417,6 +431,7 @@ body section[class=app] .pokedex .display-screen .search input {
   width: 100%;
   left: 0;
   background: transparent;
+  text-transform: lowercase;
   caret-color: white;
   padding: 10px;
   padding-left: 70px;
