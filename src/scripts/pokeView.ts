@@ -208,8 +208,11 @@ suggestionsDOM?.addEventListener('click', (e : any) => {
 });
 
 pokedexButtonDOM?.forEach(button => {
-    button.addEventListener("click", (e : any) =>{
+    button.addEventListener("click", () =>{
         pokedexDOM?.classList.toggle("open");
-        searchbarDOM?.focus();
+        if(pokedexDOM){
+            const pokeClassList : string[] = Array.from(pokedexDOM.classList);
+            pokeClassList.includes("open") ? searchbarDOM?.focus() : searchbarDOM?.blur();
+        }
     })
 })
