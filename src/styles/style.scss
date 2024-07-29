@@ -309,6 +309,19 @@ body{
                                     overflow-y: scroll;
                                     height: 100%;
                                     width: 100%;
+                                    div{
+                                        display: flex;
+                                        flex-direction: column;
+                                        align-items: center;
+                                        justify-content: flex-start;
+                                        height: 120px;
+                                        width: 120px;
+                                        img{
+                                            height: 100%;
+                                            width: 100%;
+                                            object-fit: contain;
+                                        }
+                                    }
                                 }
 
                                 .evolutions{

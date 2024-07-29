@@ -296,6 +296,19 @@ body section[class=app] .pokedex .display-screen .results-screen .info-slide-wra
   height: 100%;
   width: 100%;
 }
+body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .sprites div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 120px;
+  width: 120px;
+}
+body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .sprites div img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
 body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .evolutions {
   display: flex;
   flex-wrap: wrap;

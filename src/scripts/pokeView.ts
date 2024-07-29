@@ -111,9 +111,11 @@ export const createCard = function(pokemon : Pokemon){
                                     <div class="sprites">
                                         <div>
                                             <img src="${pokemon.sprites.frontDefault}"/>
+                                            <p>Default</p>
                                         </div>
                                         <div>
                                             <img src="${pokemon.sprites.frontShiny}"/>
+                                            <p>Shiny</p>
                                         </div>
                                     </div>
                                 </article>
