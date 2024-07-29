@@ -101,9 +101,11 @@
                                     <div class="sprites">
                                         <div>
                                             <img src="${a.sprites.frontDefault}"/>
+                                            <p>Default</p>
                                         </div>
                                         <div>
                                             <img src="${a.sprites.frontShiny}"/>
+                                            <p>Shiny</p>
                                         </div>
                                     </div>
                                 </article>
