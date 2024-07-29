@@ -291,6 +291,13 @@ body section[class=app] .pokedex .display-screen .results-screen .info-slide-wra
   justify-content: flex-start;
   gap: 10px;
 }
+body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .stats {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  width: 100%;
+  margin-top: -40px;
+}
 body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .sprites {
   display: flex;
   gap: 5px;

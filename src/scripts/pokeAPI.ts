@@ -107,6 +107,8 @@ export const fetchPokemonBasic = async function(query : string){
                 pStats.push({name: baseName, value: baseStat});
             })
 
+            console.log(pStats);
+
             //Handle Sprites
             const {front_default : frontDefault, 
                 front_female: frontFemale, 

@@ -305,6 +305,16 @@ body{
                                 justify-content: flex-start;
                                 gap: 10px;
 
+                                .stats{
+                                    display: grid;
+                                    place-items: center;
+                                    height: 100%;
+                                    width: 100%;
+                                    margin-top: -40px;
+                                    canvas{
+                                    }
+                                }
+
                                 .sprites{
                                     display: flex;
                                     gap: 5px;

@@ -4,9 +4,9 @@ import { pokemonNames } from "./pokeDB.js";
 import { loaderAnimation } from "./gsapAnimations.js";
 import Glide from '@glidejs/glide'
 import { isAlphabetical } from "./utilities.js";
-
-import pokeball from "../assets/pokeball.png"
 import psyduck from "../assets/psyduck_animation.gif"
+import Chart from 'chart.js/auto';
+
 
 export const createCard = function(pokemon : Pokemon){
     const typeColorMap : Record<string, string> = {
@@ -49,6 +49,18 @@ export const createCard = function(pokemon : Pokemon){
             <div class="glide">
                 <div class="glide__track" data-glide-el="track">
                     <ul class="glide__slides">
+                    <li class="glide__slide">
+                            <div class="info-slide">
+                                <article>
+                                    <header>
+                                        <h3>Stats</h3>
+                                    </header>
+                                    <div class="stats">
+                                        <canvas id="radar"></canvas>
+                                    </div>
+                                </article>
+                            </div>
+                        </li>
                     <li class="glide__slide">
                             <div class="info-slide">
                                 <article>
@@ -121,23 +133,6 @@ export const createCard = function(pokemon : Pokemon){
                                 </article>
                             </div>
                         </li>
-                        <li class="glide__slide">
-                            <div class="info-slide">
-                                <article>
-                                    <header>
-                                        <h3>Stats</h3>
-                                    </header>
-                                    <div class="stats">
-                                    ${pokemon.stats.map(stat => `
-                                        <div class="stat">
-                                            <p>${stat.name}</p>
-                                            <p>${stat.value}</p>
-                                        </div>
-                                        `).join('')}
-                                    </div>
-                                </article>
-                            </div>
-                        </li>
                     </ul>
                 </div>
                  <div class="glide__arrows" data-glide-el="controls">
@@ -147,6 +142,53 @@ export const createCard = function(pokemon : Pokemon){
             </div>
         </div>
     `;
+}
+
+//ChartJS
+async function attachCanvas(stats : {name : string, value : number}[]) {
+
+    // Extract labels and values
+    const labels = ["HP", "ATK", "DEF", "SpATK", "SpDEF", "SPD"];
+    const values = stats.map(item => item.value);
+
+    // Get the context of the canvas element
+    const ctx = document.getElementById('radar') as HTMLCanvasElement;
+
+    if (ctx) {
+        new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Attributes',
+                    data: values,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                
+                scales: {
+                    r: {
+                        angleLines: {
+                            display: true
+                        },
+                        ticks: {
+                            display: false
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    },
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                }
+            }
+        });
+    }
 }
 
 export const search = async function(query : string){
@@ -174,6 +216,7 @@ export const search = async function(query : string){
             if (result){
                 resultsDOM.innerHTML = createCard(result);
                 attachCardListeners();
+                attachCanvas(result.stats);
                 new Glide('div.glide').mount()
             }else{
                 resultsDOM.innerHTML = `
