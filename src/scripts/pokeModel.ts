@@ -23,6 +23,15 @@ export interface IEvolution{
     sprite: string
 }
 
+export interface ISprites{
+    officialArt: string,
+
+    frontDefault: string,
+    frontFemale?: string,
+    frontShiny?: string,
+    frontShinyFemale?: string,
+}
+
 export interface IPokemon {
     id: number,
     name: string,
@@ -30,7 +39,7 @@ export interface IPokemon {
     forms: IForm[],
     moves: IMove[],
     types: IType[],
-    sprite: string,
+    sprites: ISprites,
     species: string,
     generation?: string,
     flavorText?:string,
@@ -44,7 +53,7 @@ export class Pokemon implements IPokemon{
     forms: IForm[];
     moves: IMove[];
     types: IType[];
-    sprite: string;
+    sprites: ISprites;
     species: string;
     generation?:string;
     flavorText?:string;
@@ -58,7 +67,7 @@ export class Pokemon implements IPokemon{
         this.forms = pokemon.forms;
         this.moves = pokemon.moves;
         this.types = pokemon.types;
-        this.sprite = pokemon.sprite;
+        this.sprites = pokemon.sprites;
         this.species = pokemon.species;
         this.evolutions = pokemon.evolutions;
     }

@@ -305,9 +305,15 @@ body{
                                 .evolutions{
                                     display: flex;
                                     flex-wrap: wrap;
+                                    height: 100%;
+                                    width: 100%;
+                                    place-items: center;
                                     gap: 5px;
                                     overflow-y: scroll;
                                     .evolution{
+                                        height: 100px;
+                                        width: 100px;
+                                        grid-column: span 2;
                                         display: flex;
                                         justify-content: center;
                                         align-items: center;
@@ -316,7 +322,10 @@ body{
                                             cursor: pointer;
                                         }
                                         img{
+                                            height: 100%;
+                                            width: 100%;
                                             pointer-events: none;
+                                            object-fit: contain;
                                         }
                                         p{
                                             pointer-events: none;

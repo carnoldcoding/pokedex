@@ -1,4 +1,4 @@
-import { Pokemon, IAbility, IForm, IMove, IType, IEvolution } from "./pokeModel.js";
+import { Pokemon, IAbility, IForm, IMove, IType, IEvolution, ISprite } from "./pokeModel.js";
 
 export const fetchPokemon = async function(query : string){
     try {
@@ -51,7 +51,8 @@ export const fetchPokemon = async function(query : string){
                         try {
                             const linkSpecies = await fetchPokemonBasic(link.name);
                             if(linkSpecies){
-                                const {name, sprite} = linkSpecies;
+                                const {name} = linkSpecies;
+                                const sprite = linkSpecies.sprites.officialArt;
                                 const evolution : IEvolution = {name, sprite};
                                 if(evolution.name != pokemon.name){
                                     pokemon.evolutions.push(evolution);
@@ -59,7 +60,7 @@ export const fetchPokemon = async function(query : string){
                             }
 
                         } catch (error) {
-                            console.log(`Unable to fetch data for evolution: ${link}`, error)
+                            console.log(`Unable to fetch data for evolution link: ${link}`, error)
                         }
                     }
                     
@@ -92,8 +93,19 @@ export const fetchPokemonBasic = async function(query : string){
             const pForms : IForm[] = [];
             const pMoves : IMove[] = [];
             const pTypes : IType[] = [];
-            const sprite : string = sprites.front_default;
 
+            //Handle Sprites
+            const {front_default : frontDefault, 
+                front_female: frontFemale, 
+                front_shiny: frontShiny, 
+                front_shiny_female: frontShinyFemale,
+                other: {
+                    'official-artwork':{
+                        front_default : officialArt
+                    }
+                } 
+            } = sprites;
+            const pSprites : ISprite = {frontDefault, frontFemale, frontShiny, frontShinyFemale, officialArt};
             const speciesURL : string = species.url.split('/');
             const speciesId : string = speciesURL[speciesURL.length - 2];
             
@@ -113,7 +125,7 @@ export const fetchPokemonBasic = async function(query : string){
                 pTypes.push(entity.type);
             })
 
-            return (new Pokemon({id: id, name : name, abilities: pAbilities, forms: pForms, moves: pMoves, types: pTypes, sprite : sprite, species : speciesId, evolutions : []}))
+            return (new Pokemon({id: id, name : name, abilities: pAbilities, forms: pForms, moves: pMoves, types: pTypes, sprites : pSprites, species : speciesId, evolutions : []}))
         }
     } catch (error) {
         console.error("Unable to fetch pokemon, exited with error: ", error)

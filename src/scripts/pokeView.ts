@@ -31,13 +31,13 @@ export const createCard = function(pokemon : Pokemon){
     return `
         <div class="grid-item">
             <div class="sprite">
-                <img src="${pokemon.sprite}">
+                <img src="${pokemon.sprites.officialArt}">
             </div>
         </div>
         <div class="grid-item basic-info-wrapper">
             <div class="basic-info">
                 <div class="name">
-                    <img src="${pokeball}">
+                    <img src="https://pngimg.com/d/pokeball_PNG22.png">
                     <h3>${pokemon.name}</h3>
                 </div>
                 <div class="types">

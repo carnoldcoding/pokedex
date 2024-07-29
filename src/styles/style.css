@@ -292,10 +292,16 @@ body section[class=app] .pokedex .display-screen .results-screen .info-slide-wra
 body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .evolutions {
   display: flex;
   flex-wrap: wrap;
+  height: 100%;
+  width: 100%;
+  place-items: center;
   gap: 5px;
   overflow-y: scroll;
 }
 body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .evolutions .evolution {
+  height: 100px;
+  width: 100px;
+  grid-column: span 2;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -305,7 +311,10 @@ body section[class=app] .pokedex .display-screen .results-screen .info-slide-wra
   cursor: pointer;
 }
 body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .evolutions .evolution img {
+  height: 100%;
+  width: 100%;
   pointer-events: none;
+  object-fit: contain;
 }
 body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .evolutions .evolution p {
   pointer-events: none;
