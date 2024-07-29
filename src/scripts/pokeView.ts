@@ -176,12 +176,15 @@ export const handleKeyPress = async function (e : KeyboardEvent) {
 
     const suggestions = makeSuggestions(userInput);
 
+
+    //Clear if no input
+    if(!userInput && suggestionPlaceholder){
+        suggestionPlaceholder.textContent = "";
+    }
+
     //Automatically choose the closest suggestion
     if(suggestions && suggestionPlaceholder){
         suggestionPlaceholder.textContent = suggestions[0];
-        if(userInput == ""){
-            suggestionPlaceholder.textContent = "";
-        }
     }
     if(e.code === "Enter" && suggestions && suggestionPlaceholder){
         suggestionPlaceholder.textContent = "";
