@@ -10,24 +10,7 @@
   }
   
 
-//CSS Reset & Globals
-*{
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    box-sizing: border-box;
-    font-family: "Chakra Petch", sans-serif;
-}
-
-//Variables
-$pokedex-red: #e3211f;
-$pokedex-grey: #d4c9ca;
-$pokedex-dark-red: #900f0a;
-$pokedex-blue: #52aedf;
-
-$pokedex-radius: 20px;
-
+  
 //Mixin
 @mixin ui-block{
     background: rgba(255, 255, 255, .4);
@@ -40,17 +23,54 @@ $pokedex-radius: 20px;
 }
 
 
+//CSS Reset & Globals
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    box-sizing: border-box;
+    font-family: "Chakra Petch", sans-serif;
+
+    //ScrollBar
+    &::-webkit-scrollbar{
+        width: 9px;
+    }
+    &::-webkit-scrollbar-track {
+        background: transparent; /* Background of the track */
+        border-radius: 10px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        @include ui-block();
+    }
+    
+    &::-webkit-scrollbar-thumb:hover {
+        background: #e4e4e4; /* Color of the thumb on hover */
+    }
+    
+}
+
+//Variables
+$pokedex-red: #e3211f;
+$pokedex-grey: #d4c9ca;
+$pokedex-dark-red: #900f0a;
+$pokedex-blue: #52aedf;
+
+$pokedex-radius: 20px;
+
 body{
+    max-height: 100dvh;
+    height: 100dvh;
+    width: 100dvw;
+    overflow:hidden;
+
     h3{
         font-size: clamp(18px, 4vw, 25px);
     }
     p{
         font-size: clamp(14px, 4vw, 18px);
     }
-    max-height: 100dvh;
-    height: 100dvh;
-    width: 100dvw;
-    overflow:hidden;
 
     section[class="app"]{
         display: flex;

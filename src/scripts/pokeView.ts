@@ -238,8 +238,9 @@ export const makeSuggestions = function(query : string){
     if(isAlphabetical(query) && suggestionsElement){
         const pokemonList  = pokemonNames
       .filter(name => name.toLowerCase().startsWith(query.toLowerCase()))
-      .sort((a, b) => a.toLowerCase().indexOf(query.toLowerCase()) - b.toLowerCase().indexOf(query.toLowerCase()));
+      .sort((a, b) => a.toLowerCase().indexOf(query.toLowerCase()) - b.toLowerCase().indexOf(query.toLowerCase())).slice(0, 10);
       
+
       const suggestionsDOM = pokemonList.map(name => {
         const regex = new RegExp(`(${query})`, 'gi');
         const highlightedName = name.replace(regex, '<strong>$1</strong>');

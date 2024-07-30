@@ -14,6 +14,25 @@
   box-sizing: border-box;
   font-family: "Chakra Petch", sans-serif;
 }
+*::-webkit-scrollbar {
+  width: 9px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent; /* Background of the track */
+  border-radius: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid white;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  color: black;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: #e4e4e4; /* Color of the thumb on hover */
+}
 
 body {
   max-height: 100dvh;
