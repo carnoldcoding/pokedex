@@ -1,4 +1,4 @@
-import { Pokemon, IAbility, IForm, IMove, IType, IEvolution, ISprite, IStat } from "./pokeModel.js";
+import { Pokemon, IAbility, IForm, IMove, IType, IEvolution, ISprites, IStat } from "./pokeModel.js";
 
 export const fetchPokemon = async function(query : string){
     try {
@@ -106,8 +106,6 @@ export const fetchPokemonBasic = async function(query : string){
 
                 pStats.push({name: baseName, value: baseStat});
             })
-
-            console.log(pStats);
 
             //Handle Sprites
             const {front_default : frontDefault, 
