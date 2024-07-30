@@ -598,10 +598,21 @@ body section[class=app] .pokedex .display-screen aside .search-suggestions div p
   height: 100%;
   width: 100%;
   padding: 20px;
+  position: relative;
+}
+body section[class=app] .pokedex .display-screen aside .search-suggestions div p::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  height: 2px;
+  width: 0px;
+  background: white;
+  transition: all 0.2s ease;
 }
 body section[class=app] .pokedex .display-screen aside .search-suggestions div:hover {
   cursor: pointer;
-  background: rgba(205, 225, 255, 0.466);
+  background: rgba(0, 0, 0, 0.089);
 }
 
 /*# sourceMappingURL=style.css.map */

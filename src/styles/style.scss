@@ -603,10 +603,23 @@ body{
                                 height: 100%;
                                 width: 100%;
                                 padding: 20px;
+                                position: relative;
+                                &::after{
+                                    content: '';
+                                    position: absolute;
+                                    bottom: 0px;
+                                    left: 0px;
+                                    height: 2px;
+                                    width: 0px;
+                                    background: white;
+                                    transition: all .2s ease;
+                                }
                             }
                             &:hover{
                                 cursor: pointer;
-                                background: rgba(205, 225, 255, 0.466);
+                                background: rgba(0, 0, 0, 0.089);
+                                p::after{
+                                }
                             }
                         }
                     }
