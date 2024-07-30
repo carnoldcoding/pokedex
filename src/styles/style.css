@@ -39,7 +39,8 @@ body {
   height: 100dvh;
   width: 100dvw;
   overflow: hidden;
-  touch-action: none;
+  touch-action: manipulation;
+  overscroll-behavior: none;
 }
 body h3 {
   font-size: clamp(18px, 4vw, 25px);
