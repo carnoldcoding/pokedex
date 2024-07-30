@@ -2,7 +2,7 @@
 import { fetchPokemon } from "./pokeAPI.js";
 import { pokemonNames } from "./pokeDB.js";
 import { loaderAnimation } from "./gsapAnimations.js";
-import Glide from '@glidejs/glide'
+import Glide, { Controls } from '@glidejs/glide/dist/glide.modular.esm'
 import { isAlphabetical } from "./utilities.js";
 import psyduck from "../assets/psyduck_animation.gif"
 import Chart from 'chart.js/auto';
@@ -55,6 +55,22 @@ async function attachCanvas(stats : {name : string, value : number}[]) {
     }
 }
 
+export const attachGlide = function(){
+    const glide = new Glide('body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .glide', {
+        type: 'slider',
+    });
+
+    glide.on('mount.after', ()=>{
+        const prevButton = document.querySelector(".results-screen > .glide__arrows > .left");
+        const nextButton = document.querySelector(".results-screen > .glide__arrows > .right");
+        console.log(nextButton);
+        prevButton?.addEventListener('click', ()=> {glide.go('<')});
+        nextButton?.addEventListener('click', ()=>{ glide.go('>')});
+    })
+
+    glide.mount();
+}
+
 export const search = async function(query : string){
     const resultsDOM = document.querySelector(".results-screen") as HTMLElement;
     const inputDOM = document.querySelector("input") as HTMLInputElement;
@@ -79,6 +95,7 @@ export const search = async function(query : string){
         setTimeout(()=>{
             if (result){
                 resultsDOM.innerHTML = createCard(result);
+                attachGlide();
                 attachCardListeners();
                 attachCanvas(result.stats);
                 new Glide('div.glide').mount()

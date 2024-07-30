@@ -164,7 +164,6 @@ export const fetchPokemonBasic = async function(query : string){
                     }
                 } = entry;
                 if(learnMethod.name == 'level-up'){
-                    console.log(entry);
                     try {
                         const moveData = await fetchPokemonMoveData(entry.move.url);
                         

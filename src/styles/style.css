@@ -165,7 +165,7 @@ body section[class=app] .pokedex .display-screen {
   padding: 20px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
   place-items: center;
 }
 body section[class=app] .pokedex .display-screen .results-screen {
@@ -173,7 +173,7 @@ body section[class=app] .pokedex .display-screen .results-screen {
   width: 100%;
   display: grid;
   grid-column: 1/5;
-  grid-row: 1/4;
+  grid-row: 1/5;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   place-items: center;
@@ -254,38 +254,6 @@ body section[class=app] .pokedex .display-screen .results-screen .info-slide-wra
 body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .glide .glide__track .glide__slides .glide__slide {
   width: 100%;
   height: 100%;
-}
-body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .glide__arrows {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: clamp(5px, 1vw, 15px);
-  gap: 20px;
-}
-body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .glide__arrows button {
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid white;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05);
-  border-radius: 10px;
-  color: black;
-  padding: clamp(1px, 0.5vw, 5px);
-  width: 100%;
-}
-body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .glide__arrows button:hover {
-  cursor: pointer;
-}
-body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .glide__arrows button.left ion-icon {
-  transform: rotate(180deg);
-}
-body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .glide__arrows button ion-icon {
-  display: inline-block !important;
-  position: relative !important;
-  opacity: 1 !important;
-  color: white;
-  font-size: 25px;
 }
 body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide {
   height: 100%;
@@ -443,6 +411,40 @@ body section[class=app] .pokedex .display-screen .results-screen .info-slide-wra
 body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .description p {
   line-height: 1.75;
 }
+body section[class=app] .pokedex .display-screen .results-screen .glide__arrows {
+  grid-column: span 3;
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+body section[class=app] .pokedex .display-screen .results-screen .glide__arrows button {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid white;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  color: black;
+  padding: clamp(1px, 0.5vw, 5px);
+  width: 100%;
+}
+body section[class=app] .pokedex .display-screen .results-screen .glide__arrows button:hover {
+  cursor: pointer;
+}
+body section[class=app] .pokedex .display-screen .results-screen .glide__arrows button.left ion-icon {
+  transform: rotate(180deg);
+}
+body section[class=app] .pokedex .display-screen .results-screen .glide__arrows button ion-icon {
+  display: inline-block !important;
+  position: relative !important;
+  opacity: 1 !important;
+  color: white;
+  font-size: 25px;
+}
 body section[class=app] .pokedex .display-screen .results-screen .basic-info-wrapper {
   grid-column: span 2;
 }
@@ -488,13 +490,14 @@ body section[class=app] .pokedex .display-screen .results-screen .basic-info-wra
   padding: 10px;
 }
 body section[class=app] .pokedex .display-screen .search-wrapper {
-  grid-row: 4/5;
+  grid-row: 5/6;
   grid-column: span 3;
   height: 100%;
   width: 100%;
   padding: 10px;
   display: flex;
   align-items: flex-end;
+  place-items: center;
   justify-content: flex-end;
   position: relative;
   pointer-events: none;

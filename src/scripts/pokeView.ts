@@ -163,6 +163,7 @@ const createHeader = function(pokemon: Pokemon){
     `
 }
 
+
 export const createCard = function(pokemon : Pokemon){
     return `
         <div class="grid-item">
@@ -185,11 +186,11 @@ export const createCard = function(pokemon : Pokemon){
                         ${spritePage(pokemon)}
                     </ul>
                 </div>
-                 <div class="glide__arrows" data-glide-el="controls">
-                    <button class="left" data-glide-dir="<"><ion-icon name="play-outline"></ion-icon></button>
-                    <button class="" data-glide-dir=">"><ion-icon name="play-outline"></ion-icon></button>
-                </div>
             </div>
+        </div>
+        <div class="glide__arrows">
+            <button class="left"><ion-icon name="play-outline"></ion-icon></button>
+            <button class="right"><ion-icon name="play-outline"></ion-icon></button>
         </div>
     `;
 }
