@@ -16,7 +16,7 @@ export const fetchPokemon = async function(query : string){
 
                 flavor_text_entries.forEach((entry : {flavor_text : string, language: {name: string, url: string}}) => {
                     if(entry.language.name === "en" && parsedFlavorText === ""){
-                        parsedFlavorText = entry.flavor_text.replace(/[^a-zA-Z0-9.,?!:;(){}\[\]'"\-_ ]/g, ' ');
+                        parsedFlavorText = entry.flavor_text.replace(/[^a-zA-Z0-9.,?!:;(){}\[\]'"\-_ é]/g, ' ');
                     }
                 })
 
