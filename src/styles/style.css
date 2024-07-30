@@ -444,6 +444,7 @@ body section[class=app] .pokedex .display-screen .search {
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05);
   border-radius: 10px;
   color: black;
+  backdrop-filter: unset;
   pointer-events: auto;
   position: relative;
   height: 70px;
@@ -487,7 +488,7 @@ body section[class=app] .pokedex .display-screen .search input {
   font-size: clamp(15px, 3vw, 24px);
 }
 body section[class=app] .pokedex .display-screen .search input:not(:placeholder-shown) + .search-suggestions-wrapper {
-  height: 200px;
+  height: auto;
 }
 body section[class=app] .pokedex .display-screen .search ion-icon {
   font-size: 40px;
@@ -520,7 +521,7 @@ body section[class=app] .pokedex .display-screen aside .search-suggestions {
   border-radius: 10px;
   color: black;
   max-height: 200px;
-  min-height: 50px;
+  margin-bottom: -2px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   border-bottom-left-radius: unset;
   border-bottom-right-radius: unset;
