@@ -433,6 +433,14 @@ body{
                                                 font-size: clamp(11px, 3vw, 15px);
                                             }
                                         }
+                                        .data{
+                                            display: flex;
+                                            flex-direction: column;
+                                            p{
+                                                font-size: clamp(11px, 3vw, 15px);
+                                                text-wrap: nowrap;
+                                            }
+                                        }
                                         
                                     }
                                 }

@@ -426,6 +426,14 @@ body section[class=app] .pokedex .display-screen .results-screen .info-slide-wra
 body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .moves .move .info .description {
   font-size: clamp(11px, 3vw, 15px);
 }
+body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .moves .move .data {
+  display: flex;
+  flex-direction: column;
+}
+body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .moves .move .data p {
+  font-size: clamp(11px, 3vw, 15px);
+  text-wrap: nowrap;
+}
 body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article header h3 {
   text-transform: capitalize;
 }

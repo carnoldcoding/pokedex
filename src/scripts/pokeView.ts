@@ -78,13 +78,16 @@ const movePage = function(pokemon : Pokemon){
                         <h3>moves</h3>
                     </header>
                     <div class="moves">
-                        ${pokemon.moves.map(move => `
+                        ${pokemon.moves.sort((a, b) => a.learnLevel - b.learnLevel).map(move => `
                             <div class="move">
                                 <div class="info">
                                     <p class="name">${move.name}</p>
                                     <p class="description">${move.flavorText}</p>
                                 </div>
-                                <p>${move.pp}PP</p>
+                                <div class="data">
+                                    <p>Lv. ${move.learnLevel}</p>
+                                    <p>PP. ${move.pp}</p>
+                                </div>
                             </div>`).join('')}
                     </div>
                 </article>

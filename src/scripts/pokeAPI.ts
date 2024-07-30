@@ -158,11 +158,13 @@ export const fetchPokemonBasic = async function(query : string){
             for (const entry of moves){
                 const {version_group_details:{
                         0:{
+                            level_learned_at : learnLevel,
                             move_learn_method : learnMethod
                         }
                     }
                 } = entry;
                 if(learnMethod.name == 'level-up'){
+                    console.log(entry);
                     try {
                         const moveData = await fetchPokemonMoveData(entry.move.url);
                         
@@ -175,7 +177,7 @@ export const fetchPokemonBasic = async function(query : string){
                                 break;
                             }
                         }
-                        const pMove : IMove = {pp, power, name, flavorText};
+                        const pMove : IMove = {pp, power, name, flavorText, learnLevel};
                         pMoves.push(pMove)
                     } catch (error) {
                         console.log(`Unable to retrieve data for move ${entry.move}`);

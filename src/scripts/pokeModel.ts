@@ -1,6 +1,6 @@
 export interface IAbility {
     name: string,
-    url: string
+    effect: string
 }
 
 export interface IForm {
@@ -12,7 +12,8 @@ export interface IMove{
     name : string,
     pp: number,
     power? : number,
-    flavorText : string
+    flavorText : string,
+    learnLevel : number
 }
 
 export interface IType{
