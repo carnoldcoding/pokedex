@@ -155,13 +155,17 @@ export const fetchPokemonBasic = async function(query : string){
             })
 
             //Handle Moves
-            const moveTotal = 20;
-            let moveCurrent = 0;
             for (const entry of moves){
-                moveCurrent += 1;
-                if(moveCurrent < moveTotal){
+                const {version_group_details:{
+                        0:{
+                            move_learn_method : learnMethod
+                        }
+                    }
+                } = entry;
+                if(learnMethod.name == 'level-up'){
                     try {
                         const moveData = await fetchPokemonMoveData(entry.move.url);
+                        
                         const {pp, power, name, flavor_text_entries : flavorTextEntries} = moveData;
                         let flavorText : string = "";
     
