@@ -57,7 +57,7 @@ async function attachCanvas(stats : {name : string, value : number}[]) {
 
 export const attachGlide = function(){
     const glide = new Glide('body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .glide', {
-        type: 'slider',
+        type: 'slider'
     });
 
     glide.on('mount.after', ()=>{

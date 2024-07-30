@@ -39,6 +39,7 @@ body {
   height: 100dvh;
   width: 100dvw;
   overflow: hidden;
+  touch-action: none;
 }
 body h3 {
   font-size: clamp(18px, 4vw, 25px);
