@@ -155,23 +155,27 @@ export const fetchPokemonBasic = async function(query : string){
             })
 
             //Handle Moves
-
+            const moveTotal = 20;
+            let moveCurrent = 0;
             for (const entry of moves){
-                try {
-                    const moveData = await fetchPokemonMoveData(entry.move.url);
-                    const {pp, power, name, flavor_text_entries : flavorTextEntries} = moveData;
-                    let flavorText : string = "";
-
-                    for(let i = 0; i < flavorTextEntries.length - 1; i++){
-                        if(flavorTextEntries[i].language.name == "en"){
-                            flavorText = flavorTextEntries[i].flavor_text;
-                            break;
+                moveCurrent += 1;
+                if(moveCurrent < moveTotal){
+                    try {
+                        const moveData = await fetchPokemonMoveData(entry.move.url);
+                        const {pp, power, name, flavor_text_entries : flavorTextEntries} = moveData;
+                        let flavorText : string = "";
+    
+                        for(let i = 0; i < flavorTextEntries.length - 1; i++){
+                            if(flavorTextEntries[i].language.name == "en"){
+                                flavorText = flavorTextEntries[i].flavor_text;
+                                break;
+                            }
                         }
+                        const pMove : IMove = {pp, power, name, flavorText};
+                        pMoves.push(pMove)
+                    } catch (error) {
+                        console.log(`Unable to retrieve data for move ${entry.move}`);
                     }
-                    const pMove : IMove = {pp, power, name, flavorText};
-                    pMoves.push(pMove)
-                } catch (error) {
-                    console.log(`Unable to retrieve data for move ${entry.move}`);
                 }
             }
 
