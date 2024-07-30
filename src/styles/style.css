@@ -353,6 +353,7 @@ body section[class=app] .pokedex .display-screen .results-screen .info-slide-wra
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 10px;
 }
 body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .evolutions .evolution:hover {
   cursor: pointer;
@@ -373,6 +374,7 @@ body section[class=app] .pokedex .display-screen .results-screen .info-slide-wra
   display: flex;
   flex-direction: column;
   gap: 15px;
+  padding-right: 10px;
 }
 body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .abilities .ability {
   display: flex;
@@ -401,6 +403,7 @@ body section[class=app] .pokedex .display-screen .results-screen .info-slide-wra
   display: flex;
   flex-direction: column;
   gap: 15px;
+  padding-right: 10px;
 }
 body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .moves .move {
   display: flex;
