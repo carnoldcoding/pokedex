@@ -367,9 +367,61 @@ body section[class=app] .pokedex .display-screen .results-screen .info-slide-wra
   pointer-events: none;
   text-transform: capitalize;
 }
+body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .abilities {
+  width: 100%;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .abilities .ability {
+  display: flex;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid white;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  color: black;
+  padding: 10px;
+}
+body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .abilities .ability .info {
+  flex-basis: 90%;
+}
+body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .abilities .ability .info .name {
+  text-transform: capitalize;
+  font-weight: 600;
+}
+body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .abilities .ability .info .description {
+  font-size: clamp(11px, 3vw, 15px);
+}
 body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .moves {
   width: 100%;
   overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .moves .move {
+  display: flex;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid white;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  color: black;
+  padding: 10px;
+}
+body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .moves .move .info {
+  flex-basis: 90%;
+}
+body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .moves .move .info .name {
+  text-transform: capitalize;
+  font-weight: 600;
+}
+body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .moves .move .info .description {
+  font-size: clamp(11px, 3vw, 15px);
 }
 body section[class=app] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article header h3 {
   text-transform: capitalize;

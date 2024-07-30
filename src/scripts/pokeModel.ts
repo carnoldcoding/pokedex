@@ -9,8 +9,10 @@ export interface IForm {
 }
 
 export interface IMove{
-    name: string,
-    url: string
+    name : string,
+    pp: number,
+    power? : number,
+    flavorText : string
 }
 
 export interface IType{

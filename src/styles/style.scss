@@ -386,9 +386,51 @@ body{
                                         }
                                     }
                                 }
+                                .abilities{
+                                    width: 100%;
+                                    overflow-y: scroll;
+                                    display: flex;
+                                    flex-direction: column;
+                                    gap: 15px;
+                                    .ability{
+                                        display: flex;
+                                        @include ui-block();
+                                        padding: 10px;
+                                        .info{
+                                            flex-basis: 90%;
+                                            .name{
+                                                text-transform: capitalize;
+                                                font-weight: 600;
+                                            }
+                                            .description{
+                                                font-size: clamp(11px, 3vw, 15px);
+                                            }
+                                        }
+                                        
+                                    }
+                                }
                                 .moves{
                                     width: 100%;
                                     overflow-y: scroll;
+                                    display: flex;
+                                    flex-direction: column;
+                                    gap: 15px;
+                                    .move{
+                                        display: flex;
+                                        @include ui-block();
+                                        padding: 10px;
+                                        .info{
+                                            flex-basis: 90%;
+                                            .name{
+                                                text-transform: capitalize;
+                                                font-weight: 600;
+                                            }
+                                            .description{
+                                                font-size: clamp(11px, 3vw, 15px);
+                                            }
+                                        }
+                                        
+                                    }
                                 }
                                 header{
                                     h3{

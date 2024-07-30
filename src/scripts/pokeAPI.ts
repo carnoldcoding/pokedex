@@ -49,10 +49,10 @@ export const fetchPokemon = async function(query : string){
 
                     for (const link of chainList){
                         try {
-                            const linkSpecies = await fetchPokemonBasic(link.name);
+                            const linkSpecies = await fetchEvolutionData(link.name);
                             if(linkSpecies){
                                 const {name} = linkSpecies;
-                                const sprite = linkSpecies.sprites.officialArt;
+                                const sprite = linkSpecies.officialArt;
                                 const evolution : IEvolution = {name, sprite};
                                 if(evolution.name != pokemon.name){
                                     pokemon.evolutions.push(evolution);
@@ -76,7 +76,31 @@ export const fetchPokemon = async function(query : string){
     } catch (error) {
         console.log("Couldn't fetch the pokemon", error);
     }
-    
+}
+
+export const fetchEvolutionData = async function(query : string){
+    try {
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${query}`);
+        if(!response.ok){
+            console.log(`Error: Failed to fetch data for ${query}. Status: ${response.status} - ${response.statusText}`);
+            return
+        }else{
+            const data = await response.json();
+            const {name, sprites} = data;
+            const {
+                other: {
+                    'official-artwork':{
+                        front_default : officialArt
+                    }
+                } 
+            } = sprites;
+
+            return {name, officialArt}
+        }
+    }
+    catch(err){
+        console.log(`Couldn't fetch evolution data for ${query}`, err);
+    }
 }
 
 export const fetchPokemonBasic = async function(query : string){
@@ -118,25 +142,59 @@ export const fetchPokemonBasic = async function(query : string){
                     }
                 } 
             } = sprites;
-            const pSprites : ISprite = {frontDefault, frontFemale, frontShiny, frontShinyFemale, officialArt};
+            const pSprites : ISprites = {frontDefault, frontFemale, frontShiny, frontShinyFemale, officialArt};
             const speciesURL : string = species.url.split('/');
             const speciesId : string = speciesURL[speciesURL.length - 2];
-            
-            abilities.forEach((entity: {ability: IAbility}) => {
-                pAbilities.push(entity.ability);
-            });
 
             forms.forEach((form : IForm)=> {
                 pForms.push(form);
             })
 
-            moves.forEach((entity : {move : IMove})=>{
-                pMoves.push(entity.move);
-            })
-
             types.forEach((entity: {type : IType})=>{
                 pTypes.push(entity.type);
             })
+
+            //Handle Moves
+
+            for (const entry of moves){
+                try {
+                    const moveData = await fetchPokemonMoveData(entry.move.url);
+                    const {pp, power, name, flavor_text_entries : flavorTextEntries} = moveData;
+                    let flavorText : string = "";
+
+                    for(let i = 0; i < flavorTextEntries.length - 1; i++){
+                        if(flavorTextEntries[i].language.name == "en"){
+                            flavorText = flavorTextEntries[i].flavor_text;
+                            break;
+                        }
+                    }
+                    const pMove : IMove = {pp, power, name, flavorText};
+                    pMoves.push(pMove)
+                } catch (error) {
+                    console.log(`Unable to retrieve data for move ${entry.move}`);
+                }
+            }
+
+            // Handle Abilities
+            for (const entry of abilities){
+                try {
+                    const abilityData = await fetchPokemonAbilityData(entry.ability.url);
+                    const abilityName = entry.ability.name;
+                    const {effect_entries : effectEntries} = abilityData;
+                    let abilityEffect = "";
+
+                    for(let i = 0; i < effectEntries.length; i++){
+                        if(effectEntries[i].language.name == "en"){
+                            abilityEffect = effectEntries[i].effect;
+                            break;
+                        }
+                    }
+                    const pAbility : IAbility = {name: abilityName, effect: abilityEffect};
+                    pAbilities.push(pAbility);
+                } catch (error) {
+                    console.log(`Error when fetching data for ability ${entry}`, error);
+                }
+            }
 
             return (new Pokemon({id: id, 
                 name : name,
@@ -151,6 +209,34 @@ export const fetchPokemonBasic = async function(query : string){
         }
     } catch (error) {
         console.error("Unable to fetch pokemon, exited with error: ", error)
+    }
+}
+
+export const fetchPokemonAbilityData = async function(url : string){
+    try {
+        const response = await fetch(url);
+        if(!response.ok){
+            console.log("Unable to fetch abilities");
+            return
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.log("Unable to fetch abilities, exited with error: ", error);
+    }
+}
+
+export const fetchPokemonMoveData = async function(url : string){
+    try {
+        const response = await fetch(url);
+        if(!response.ok){
+            console.log("Unable to fetch moves");
+            return
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.log("Unable to fetch moves, exited with error: ", error);
     }
 }
 

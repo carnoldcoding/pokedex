@@ -54,9 +54,15 @@ const abilityPage = function(pokemon : Pokemon){
                 <header>
                 <h3>Abilities</h3>
                 </header>
-                <div class="moves">
-                    ${pokemon.abilities.map(ability => `<p>${ability.name}</p>`).join('')}
-                </div>
+                <div class="abilities">
+                        ${pokemon.abilities.map(ability => `
+                            <div class="ability">
+                                <div class="info">
+                                    <p class="name">${ability.name}</p>
+                                    <p class="description">${ability.effect}</p>
+                                </div>
+                            </div>`).join('')}
+                    </div>
             </article>
         </div>
     </li>
@@ -72,7 +78,14 @@ const movePage = function(pokemon : Pokemon){
                         <h3>moves</h3>
                     </header>
                     <div class="moves">
-                        ${pokemon.moves.map(move => `<p>${move.name}</p>`).join('')}
+                        ${pokemon.moves.map(move => `
+                            <div class="move">
+                                <div class="info">
+                                    <p class="name">${move.name}</p>
+                                    <p class="description">${move.flavorText}</p>
+                                </div>
+                                <p>${move.pp}PP</p>
+                            </div>`).join('')}
                     </div>
                 </article>
             </div>
