@@ -189,6 +189,10 @@ searchbarDOM?.addEventListener("keyup", handleKeyPress);
 
 //Figure out how to change e : any to the appropriate type
 suggestionsDOM?.addEventListener('click', (e : any) => {
+    document.getElementById('display-screen')?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+    })
     if(suggestionPlaceholder){
         suggestionPlaceholder.textContent = "";
     }
