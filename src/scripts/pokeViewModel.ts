@@ -152,6 +152,10 @@ export const handleKeyPress = async function (e : KeyboardEvent) {
 
     if(e.code === "Enter" && suggestions && suggestionPlaceholder){
         suggestionPlaceholder.textContent = "";
+        document.getElementById('display-screen')?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+        })
         if(suggestions.includes(userInput)){
             search(userInput);
         }else if(suggestions.length > 0){
