@@ -563,7 +563,7 @@ body{
                         font-size: clamp(15px, 3vw, 24px);
                         &:not(:placeholder-shown){
                             &+.search-suggestions-wrapper{
-                                height: auto;
+                                height: 200px;
                             }
                         }
                     }
@@ -588,15 +588,16 @@ body{
                     flex-direction: column;
                     justify-content: flex-end;
                     .search-suggestions{
+                        @include ui-block();
                         position: relative;
                         overflow-y: scroll;
-                        @include ui-block();
+                        overflow-x: hidden;
                         max-height: 200px;
                         margin-bottom: -2px;
                         border-bottom: 1px solid rgba(255, 255, 255, .2);
                         border-bottom-left-radius: unset;
                         border-bottom-right-radius: unset;
-                       
+                        background: rgba(236, 241, 255, 0.8);
                         div{
                             p{
                                 height: 100%;
@@ -605,7 +606,7 @@ body{
                             }
                             &:hover{
                                 cursor: pointer;
-                                background: rgb(255, 247, 247, .3);
+                                background: rgba(205, 225, 255, 0.466);
                             }
                         }
                     }
