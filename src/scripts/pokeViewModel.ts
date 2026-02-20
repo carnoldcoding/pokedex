@@ -63,7 +63,6 @@ export const attachGlide = function(){
     glide.on('mount.after', ()=>{
         const prevButton = document.querySelector(".results-screen > .glide__arrows > .left");
         const nextButton = document.querySelector(".results-screen > .glide__arrows > .right");
-        console.log(nextButton);
         prevButton?.addEventListener('click', ()=> {glide.go('<')});
         nextButton?.addEventListener('click', ()=>{ glide.go('>')});
     })

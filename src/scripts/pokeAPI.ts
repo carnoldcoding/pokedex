@@ -4,6 +4,8 @@ export const fetchPokemon = async function(query : string){
     try {
         const pokemon = await fetchPokemonBasic(query);
 
+        console.log(pokemon);
+        
         if(pokemon){
             try {
                 const pokemonSpecies = await fetchPokemonSpecies(pokemon.species);
@@ -26,13 +28,13 @@ export const fetchPokemon = async function(query : string){
                     const evolutionChain = await fetchEvolutionChain(evolution_chain.url);
 
                     let chain = evolutionChain.chain;
-                    const chainList : {name: string, url: string}[] =  [];
+                    const chainList : {name: string, minLevel: number | null, url: string}[] =  [];
                     chainList.push(chain.species);
 
                     //Follow evolution chain depth-wise
                     while(chain.evolves_to[0]){
                         chain = chain.evolves_to[0];
-                        chainList.push(chain.species);
+                        chainList.push({...chain.species, minLevel: chain.evolution_details[0].min_level, item: chain.evolution_details[0].item.name});
                     }
 
                     //Reset Chain
@@ -41,11 +43,17 @@ export const fetchPokemon = async function(query : string){
                     //Follow evolution chain laterally
                     for(let i = 0; i < chain.evolves_to.length; i++){
                         if(chain.evolves_to[i]){
-                            if(!chainList.includes(chain.evolves_to[i].species)){
-                                chainList.push(chain.evolves_to[i].species);
+                            //If an object of the same name doesn't exist in the chain, add this one to the chain
+                            //array.some runs a provided testing function against each element of the array it is called on
+                            if (!chainList.some(link => link.name === chain.evolves_to[i].species.name)) {
+                                chainList.push({
+                                    ...chain.evolves_to[i].species,
+                                    minLevel: chain?.evolution_details[i]?.min_level || null
+                                });
                             }
                         }
                     }
+
 
                     for (const link of chainList){
                         try {
@@ -53,7 +61,8 @@ export const fetchPokemon = async function(query : string){
                             if(linkSpecies){
                                 const {name} = linkSpecies;
                                 const sprite = linkSpecies.officialArt;
-                                const evolution : IEvolution = {name, sprite};
+                                const minLevel = link.minLevel;
+                                const evolution : IEvolution = {name, sprite, minLevel};
                                 if(evolution.name != pokemon.name){
                                     pokemon.evolutions.push(evolution);
                                 }
@@ -70,7 +79,6 @@ export const fetchPokemon = async function(query : string){
             } catch (error) {
                 console.log("Unable to fetch pokemon species", error);
             }
-
             return pokemon;
         }
     } catch (error) {

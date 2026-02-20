@@ -23,7 +23,8 @@ export interface IType{
 
 export interface IEvolution{
     name: string,
-    sprite: string
+    sprite: string,
+    minLevel: number | null
 }
 
 export interface ISprites{
