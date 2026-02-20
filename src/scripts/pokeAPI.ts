@@ -34,7 +34,7 @@ export const fetchPokemon = async function(query : string){
                     //Follow evolution chain depth-wise
                     while(chain.evolves_to[0]){
                         chain = chain.evolves_to[0];
-                        chainList.push({...chain.species, minLevel: chain.evolution_details[0].min_level, item: chain.evolution_details[0].item.name});
+                        chainList.push({...chain.species, minLevel: chain.evolution_details[0].min_level});
                     }
 
                     //Reset Chain

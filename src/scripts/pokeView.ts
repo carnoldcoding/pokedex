@@ -38,7 +38,7 @@ const evolutionPage = function(pokemon : Pokemon){
                                 <img src="${evolution.sprite}"/>
                                 <p>${evolution.name}</p>
                                 ${
-                                    evolution.minLevel ? `<p>lv. ${evolution.minLevel}</p>` : ``
+                                    evolution.minLevel ? `<p class="evolution-level">lv. ${evolution.minLevel}</p>` : ``
                                 }
                             </div>
                             `).join('')}

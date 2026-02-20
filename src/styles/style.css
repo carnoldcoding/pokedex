@@ -278,7 +278,8 @@ body {
                     justify-content: center;
                     align-items: center;
                     flex-direction: column;
-                    padding: 10px; }
+                    padding: 10px;
+                    position: relative; }
                     body section[class="app"] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .evolutions .evolution:hover {
                       cursor: pointer; }
                     body section[class="app"] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .evolutions .evolution img {
@@ -289,6 +290,13 @@ body {
                     body section[class="app"] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .evolutions .evolution p {
                       pointer-events: none;
                       text-transform: capitalize; }
+                    body section[class="app"] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .evolutions .evolution .evolution-level {
+                      position: absolute;
+                      left: 50%;
+                      transform: translateX(-50%);
+                      bottom: -5px;
+                      color: #202020;
+                      font-size: 14px; }
                 body section[class="app"] .pokedex .display-screen .results-screen .info-slide-wrapper .info-slide article .abilities {
                   width: 100%;
                   overflow-y: scroll;

@@ -345,6 +345,7 @@ body{
                                         align-items: center;
                                         flex-direction: column;
                                         padding: 10px;
+                                        position: relative;
                                         &:hover{
                                             cursor: pointer;
                                         }
@@ -357,6 +358,14 @@ body{
                                         p{
                                             pointer-events: none;
                                             text-transform: capitalize;
+                                        }
+                                        .evolution-level{
+                                            position: absolute;
+                                            left: 50%;
+                                            transform: translateX(-50%);
+                                            bottom: -5px;
+                                            color: rgb(32, 32, 32);
+                                            font-size: 14px;
                                         }
                                     }
                                 }
